@@ -2,23 +2,35 @@ import type { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
   defaultLanguage: "en-US",
-  avatarSrc: "/images/avatar/user.webp",
+  avatarSrc: "/images/avatar/xinxian.png",
   resume: {
     href: "/documents/resume.md",
     downloadName: "resume.md",
-    email: "gvjk0631@gmail.com",
+    email: "xinxian.ma@epfl.ch",
   },
   contact: {
     socials: [
       {
         label: "GitHub",
-        href: "https://github.com/Mike-Ski-615",
+        href: "https://github.com/mxx28",
         side: "bottom",
+        icon: "github",
         profile: {
-          name: "Mike-Ski-615",
+          name: "mxx28",
           subtitle: "GitHub Profile",
           description:
-            "Open source projects, experiments, and the source for this resume site.",
+            "Projects, research code, and experiments.",
+        },
+      },
+      {
+        label: "Email",
+        href: "mailto:xinxian.ma@epfl.ch",
+        side: "bottom",
+        icon: "mail",
+        profile: {
+          name: "xinxian.ma@epfl.ch",
+          subtitle: "Email",
+          description: "Best way to reach me.",
         },
       },
     ],

@@ -315,7 +315,7 @@ function DesktopScrollAnchorToc({
   return (
     <nav
       aria-label={anchorLabel}
-      className="fixed top-1/3 z-50 hidden w-44 -translate-y-1/2 lg:block left-[max(1rem,calc((100vw-43.125rem)/2-12rem))]"
+      className="fixed top-1/3 z-50 hidden w-44 -translate-y-1/2 lg:block left-[max(1rem,calc((100vw-56rem)/2-12rem))]"
     >
       <div className="flex flex-col gap-2">
         <div className="flex h-7 items-center gap-3 text-sm text-muted-foreground">

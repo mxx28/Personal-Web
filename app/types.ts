@@ -14,10 +14,13 @@ export type DividerStyle =
 
 export type HoverSide = "left" | "top" | "bottom" | "right";
 
+export type SocialIconKey = "github" | "mail";
+
 export type SocialLinkConfig = {
   label: string;
   href: string;
   side: HoverSide;
+  icon?: SocialIconKey;
   profile: {
     name: string;
     subtitle: string;
@@ -97,9 +100,15 @@ export type ExperienceEntry = {
   organization: string;
   role: string;
   employmentType?: string;
+  kind?: "research" | "internship";
   period: string;
   location: string;
   logoText: string;
+  logoSrc?: string;
+  logoDarkSrc?: string;
+  logoAlt?: string;
+  tags?: string[];
+  hidden?: boolean;
   highlights: string[];
 };
 
@@ -147,13 +156,30 @@ export type HomeProfileContent = {
 
 export type HomeAboutContent = {
   tocLabel: string;
-  greeting: string;
+  greeting:
+    | string
+    | Array<{
+        text: string;
+        href?: string;
+      }>;
+  status:
+    | string
+    | Array<{
+        text: string;
+        href?: string;
+      }>
+    | Array<
+        Array<{
+          text: string;
+          href?: string;
+        }>
+      >;
   school: {
     name: string;
+    href?: string;
     major: string;
     majorEnglish: string;
   };
-  status: string;
   badges: BadgeItem[];
 };
 
@@ -161,6 +187,11 @@ export type HomeProjectsContent = {
   tocLabel: string;
   title: string;
   viewDetailsLabel: string;
+};
+
+export type HomeSocialsContent = {
+  tocLabel: string;
+  title: string;
 };
 
 export type HomeGithubContent = {
@@ -181,6 +212,34 @@ export type HomeExperiencesContent = {
   items: ExperienceEntry[];
 };
 
+export type HomeResearchExperiencesContent = {
+  tocLabel: string;
+  title: string;
+  items: ExperienceEntry[];
+};
+
+export type PublicationLinkKey = "pdf" | "arxiv" | "code" | "project";
+
+export type PublicationEntry = {
+  id: string;
+  title: string;
+  authors: string;
+  venue?: string;
+  year?: string;
+  date?: string;
+  cover?: string;
+  abstract?: string;
+  tags?: string[];
+  topics?: string[];
+  links?: Partial<Record<PublicationLinkKey, string>>;
+};
+
+export type HomePublicationsContent = {
+  tocLabel: string;
+  title: string;
+  items: PublicationEntry[];
+};
+
 export type HomeSkillsContent = {
   tocLabel: string;
   title: string;
@@ -191,6 +250,27 @@ export type HomeNowContent = {
   tocLabel: string;
   title: string;
   items: NowEntry[];
+};
+
+export type BlogEntry = {
+  id: string;
+  title: string;
+  summary: string;
+  cover: string;
+  badge?: string;
+};
+
+export type HomeBlogsContent = {
+  tocLabel: string;
+  title: string;
+  viewDetailsLabel: string;
+  items: BlogEntry[];
+};
+
+export type HomeFunFactsContent = {
+  tocLabel: string;
+  title: string;
+  items: string[];
 };
 
 export type HomeResumeContent = {
@@ -231,9 +311,14 @@ export type HomeContent = {
   profile: HomeProfileContent;
   about: HomeAboutContent;
   projects: HomeProjectsContent;
+  socials: HomeSocialsContent;
   github: HomeGithubContent;
   experiences: HomeExperiencesContent;
+  researchExperiences: HomeResearchExperiencesContent;
+  publications: HomePublicationsContent;
   skills: HomeSkillsContent;
+  blogs: HomeBlogsContent;
+  funFacts: HomeFunFactsContent;
   now: HomeNowContent;
   resume: HomeResumeContent;
   newsletter: HomeNewsletterContent;

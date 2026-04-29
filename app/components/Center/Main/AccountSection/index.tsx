@@ -4,18 +4,26 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import { IconBrandGithub, IconMail } from "@tabler/icons-react";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { siteConfig } from "@/site/config";
 import type { SocialLinkConfig } from "@/types";
 
 function SocialHoverCardItem({ social }: { social: SocialLinkConfig }) {
   const initials = social.profile.name.trim().slice(0, 1).toUpperCase();
+  const Icon =
+    social.icon === "github"
+      ? IconBrandGithub
+      : social.icon === "mail"
+        ? IconMail
+        : null;
 
   return (
     <HoverCard openDelay={100} closeDelay={100}>
       <HoverCardTrigger asChild>
-        <Button variant="secondary" size="xs" asChild>
+        <Button variant="secondary" size="sm" asChild>
           <a href={social.href} target="_blank" rel="noreferrer">
+            {Icon ? <Icon data-icon="inline-start" /> : null}
             {social.label}
           </a>
         </Button>
@@ -48,7 +56,6 @@ function SocialHoverCardItem({ social }: { social: SocialLinkConfig }) {
 }
 
 export default function AccountSection() {
-  const { ui } = useSiteContent();
   const socialLinks = siteConfig.contact.socials.filter((social) =>
     social.href.trim(),
   );
@@ -59,10 +66,6 @@ export default function AccountSection() {
 
   return (
     <div className="flex flex-col gap-2">
-      <p>
-        {ui.actions.accountPrefix}{" "}
-        <span className="font-semibold">{ui.actions.accountHighlight}</span>
-      </p>
       <div className="flex flex-wrap gap-2">
         {socialLinks.map((social) => (
           <SocialHoverCardItem key={social.label} social={social} />

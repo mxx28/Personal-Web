@@ -31,7 +31,7 @@ export default function BadgeBar() {
   } = useSiteContent();
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-1.5">
       {badges.map((badge) => {
         const Icon = badgeIconMap[badge.icon];
 
@@ -39,7 +39,7 @@ export default function BadgeBar() {
           <Badge
             key={badge.id}
             variant="secondary"
-            className=" border-border/60 bg-secondary/80"
+            className="h-4 gap-1 px-1.5 py-0 text-[0.625rem] border-border/60 bg-secondary/80 [&>svg]:size-2.5"
           >
             <Icon aria-hidden="true" />
             {badge.label}

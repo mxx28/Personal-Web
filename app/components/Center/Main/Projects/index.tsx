@@ -92,7 +92,7 @@ export default function Projects() {
 
     document
       .querySelector(`[data-project-slug="${returnProjectSlug}"]`)
-      ?.scrollIntoView({ block: "center", inline: "nearest" });
+      ?.scrollIntoView({ block: "center", inline: "center" });
   }, [returnProjectSlug]);
 
   const projects = projectSlugs.map<ProjectCardData>((slug) => {
@@ -105,54 +105,28 @@ export default function Projects() {
       summary: project.summary,
     };
   });
-  const projectRows = projects.reduce<ProjectCardData[][]>((rows, project) => {
-    const currentRow = rows[rows.length - 1];
-
-    if (!currentRow || currentRow.length === 2) {
-      rows.push([project]);
-    } else {
-      currentRow.push(project);
-    }
-
-    return rows;
-  }, []);
 
   return (
     <>
       <SectionHeader>{projectsSection.title}</SectionHeader>
-      {projectRows.map((row, rowIndex) => (
-        <div key={rowIndex}>
-          <div className="md:grid md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:items-stretch">
-            {row[0] ? (
-              <ProjectCard
-                project={row[0]}
-                statusLabel={ui.common.status[row[0].status]}
-                viewDetailsLabel={projectsSection.viewDetailsLabel}
-              />
-            ) : null}
-            <div className="double-divider md:hidden" />
-            <div
-              className="relative hidden overflow-hidden md:block"
-              style={{ width: 5 }}
-            >
+      <div className="px-4 pb-2">
+        <div className="-mx-4 overflow-x-auto px-4">
+          <div className="flex snap-x snap-mandatory gap-4 md:gap-4">
+            {projects.map((project) => (
               <div
-                className="double-divider absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-90"
-                style={{ width: 2000 }}
-              />
-            </div>
-            {row[1] ? (
-              <ProjectCard
-                project={row[1]}
-                statusLabel={ui.common.status[row[1].status]}
-                viewDetailsLabel={projectsSection.viewDetailsLabel}
-              />
-            ) : null}
+                key={project.slug}
+                className="flex-shrink-0 snap-start w-full md:w-[calc(50%-0.5rem)]"
+              >
+                <ProjectCard
+                  project={project}
+                  statusLabel={ui.common.status[project.status]}
+                  viewDetailsLabel={projectsSection.viewDetailsLabel}
+                />
+              </div>
+            ))}
           </div>
-          {rowIndex < projectRows.length - 1 && (
-            <div className="double-divider" />
-          )}
         </div>
-      ))}
+      </div>
     </>
   );
 }

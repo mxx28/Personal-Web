@@ -8,6 +8,9 @@ import { Badge } from "@/components/ui/badge";
 import SectionHeader from "@/components/Center/SectionHeader";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import type { ExperienceEntry } from "@/types";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Separator } from "@/components/ui/separator";
+import { Fragment, useMemo, useState } from "react";
 
 function ExperienceItem({ experience }: { experience: ExperienceEntry }) {
   return (
@@ -16,12 +19,31 @@ function ExperienceItem({ experience }: { experience: ExperienceEntry }) {
       className="group px-4 transition-colors hover:bg-muted/30 not-last:border-b-0"
     >
       <AccordionTrigger className="py-4 hover:no-underline">
-        <div className="flex w-full flex-col items-start justify-between pr-2 sm:flex-row">
+        <div className="flex w-full items-start justify-between gap-4 pr-2 transition-all duration-300 group-hover:-translate-y-1">
           <div className="flex min-w-0 items-start gap-4">
             <div className="flex size-15 shrink-0 items-center justify-center rounded-2xl border border-border/70 bg-muted/25">
-              <div className=" flex size-11 items-center justify-center rounded-xl bg-primary text-sm font-bold text-primary-foreground">
-                {experience.logoText}
-              </div>
+              {experience.logoSrc ? (
+                <div className="flex size-11 items-center justify-center rounded-xl bg-background/70 p-1.5">
+                  <picture>
+                    {experience.logoDarkSrc ? (
+                      <source
+                        srcSet={experience.logoDarkSrc}
+                        media="(prefers-color-scheme: dark)"
+                      />
+                    ) : null}
+                    <img
+                      src={experience.logoSrc}
+                      alt={experience.logoAlt ?? `${experience.organization} logo`}
+                      className="size-full object-contain"
+                      loading="lazy"
+                    />
+                  </picture>
+                </div>
+              ) : (
+                <div className=" flex size-11 items-center justify-center rounded-xl bg-primary text-sm font-bold text-primary-foreground">
+                  {experience.logoText}
+                </div>
+              )}
             </div>
 
             <div className="min-w-0 text-left">
@@ -41,16 +63,32 @@ function ExperienceItem({ experience }: { experience: ExperienceEntry }) {
             </div>
           </div>
 
-          <div className=" mt-2 text-sm text-muted-foreground md:mt-0 md:pl-4 md:text-right">
-            <p className="text-base font-semibold">{experience.period}</p>
-            <p className="text-base text-muted-foreground">
-              {experience.location}
+          <div className="shrink-0 text-right text-sm text-muted-foreground">
+            <p className="text-sm font-semibold text-foreground/80">
+              {experience.period}
             </p>
+            <p className="text-sm text-muted-foreground">{experience.location}</p>
           </div>
         </div>
       </AccordionTrigger>
 
       <AccordionContent>
+        {experience.tags?.length ? (
+          <div className="pb-2 pl-3 md:pl-5">
+            <div className="flex flex-wrap gap-1.5">
+              {experience.tags.map((tag) => (
+                <Badge
+                  key={tag}
+                  variant="secondary"
+                  className="h-5 px-2 py-0 text-[0.625rem] border-border/60 bg-secondary/80 [&>svg]:size-2.5"
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
         <ul className="flex flex-col gap-2.5 pb-2 pl-3 text-sm leading-7 text-muted-foreground md:pl-5">
           {experience.highlights.map((highlight) => (
             <li key={highlight}>{highlight}</li>
@@ -61,20 +99,56 @@ function ExperienceItem({ experience }: { experience: ExperienceEntry }) {
   );
 }
 
-export default function Experiences() {
-  const {
-    home: { experiences },
-  } = useSiteContent();
+export function ExperienceList({
+  title,
+  items,
+}: {
+  title: string;
+  items: ExperienceEntry[];
+}) {
+  const [filter, setFilter] = useState<"research" | "internship">("research");
+
+  const visibleItems = useMemo(() => {
+    return items.filter((item) => {
+      if (item.hidden) return false;
+      if (!item.kind) return true;
+      return item.kind === filter;
+    });
+  }, [filter, items]);
 
   return (
     <>
-      <SectionHeader>{experiences.title}</SectionHeader>
+      <SectionHeader>{title}</SectionHeader>
 
+      <Tabs value={filter} onValueChange={(v) => setFilter(v as typeof filter)}>
+        <TabsList
+          aria-label="Experience filters"
+          variant="line"
+          className="mt-1 flex h-10 w-full min-w-0 rounded-none bg-transparent p-0 px-1.5 text-foreground"
+        >
+          {[
+            { value: "research", label: "Research" },
+            { value: "internship", label: "Internship" },
+          ].map((tab, index) => (
+            <Fragment key={tab.value}>
+              {index > 0 && <Separator orientation="vertical" />}
+              <TabsTrigger
+                value={tab.value}
+                className="min-w-0 flex-1 basis-0 rounded-none py-2 data-active:bg-transparent data-active:text-foreground"
+              >
+                {tab.label}
+              </TabsTrigger>
+            </Fragment>
+          ))}
+        </TabsList>
+      </Tabs>
+
+      <div className="pt-2" />
       <Accordion type="single" collapsible>
-        {experiences.items.map((experience, index) => (
+        {visibleItems.map((experience, index) => (
           <div key={experience.id}>
             <ExperienceItem experience={experience} />
-            {index < experiences.items.length - 1 && (
+            {index < visibleItems.length - 1 && (
               <div className="double-divider" />
             )}
           </div>
@@ -82,4 +156,12 @@ export default function Experiences() {
       </Accordion>
     </>
   );
+}
+
+export default function Experiences() {
+  const {
+    home: { experiences },
+  } = useSiteContent();
+
+  return <ExperienceList title={experiences.title} items={experiences.items} />;
 }

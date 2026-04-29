@@ -33,7 +33,7 @@ export default function SectionFrame({
     >
       <div
         className={cn(
-          "max-w-172.5 mx-2 sm:mx-8 md:mx-auto relative section-frame",
+          "max-w-[56rem] mx-2 sm:mx-8 md:mx-auto relative section-frame",
           innerClassName,
         )}
       >

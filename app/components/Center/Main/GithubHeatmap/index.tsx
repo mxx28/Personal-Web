@@ -64,6 +64,7 @@ export default function Calendar() {
   const { theme } = useTheme();
   const currentYear = new Date().getUTCFullYear();
   const calendarLocale = locale;
+
   const { data, tooltipByDate } = useMemo(
     () =>
       generateData(currentYear, calendarLocale, (date, count) =>
@@ -123,14 +124,18 @@ export default function Calendar() {
     <>
       <SectionHeader>{github.title}</SectionHeader>
       <div className="px-2 py-2 sm:px-4">
-        <ActivityCalendar
-          data={data}
-          blockMargin={2}
-          blockSize={10}
-          renderBlock={renderBlock}
-          labels={labels}
-          colorScheme={theme}
-        />
+        <div className="-mx-2 overflow-x-auto px-2">
+          <div className="flex justify-center">
+            <ActivityCalendar
+              data={data}
+              blockMargin={2}
+              blockSize={12}
+              renderBlock={renderBlock}
+              labels={labels}
+              colorScheme={theme}
+            />
+          </div>
+        </div>
       </div>
     </>
   );

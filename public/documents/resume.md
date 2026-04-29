@@ -1,29 +1,27 @@
-# Mike Ski - Resume Draft
+# Xinxian Ma — Resume
 
-Front-end / Full-stack Developer Intern
+Machine Learning / LLM / Data Science
 
 ## Profile
 
-Computer Science and Technology student focused on clean, modern, and high-performance web applications. Interested in product-minded engineering, thoughtful UI details, and reliable delivery.
+M.Sc. student in Data Science at [EPFL](https://www.epfl.ch/). Currently doing research on **LLM decoding** at the [Data Science & AI Lab (DLAB)](https://dlab.epfl.ch/), advised by [Robert West](https://www.robertwest.io/) and PhD student Saibo Geng. Previously earned a B.Sc. in Data Science at [The Chinese University of Hong Kong, Shenzhen](https://www.cuhk.edu.cn/en), supervised by Prof. Jicong Fan, focusing on machine learning.
 
 ## Core Stack
 
-- React
-- TypeScript
-- Node.js
-- Tailwind CSS
-- Shadcn UI
-- Three.js
-- Prisma
-- PostgreSQL
+- Python
+- PyTorch
+- Machine Learning
+- Large Language Models
+- Data Science
 
 ## Current Focus
 
-- Building personal and open-source projects with React and TypeScript.
-- Improving UI motion, interaction details, and developer experience.
-- Looking for front-end or full-stack internship opportunities.
+- Research on LLM decoding and inference-time methods.
+- Applied ML and data-centric experimentation.
+- Seeking **LLM / ML / DS internship** opportunities.
 
 ## Contact
 
-- Email: mike.ski@devmail.app
-- GitHub: https://github.com/
+- Email: xinxian.ma@epfl.ch
+- Email (alt): maxinxian0114@gmail.com
+- GitHub: https://github.com/mxx28

@@ -11,11 +11,27 @@ export default function SendEmail() {
     return null;
   }
 
+  const handleClick = async () => {
+    try {
+      await navigator.clipboard?.writeText?.(email);
+    } catch {
+      // best-effort clipboard; mailto still works even if this fails
+    }
+  };
+
   return (
     <Button size="sm" variant="outline" className="" asChild>
-      <a href={`mailto:${email}`}>
+      <a
+        href={`mailto:${encodeURIComponent(email)}`}
+        target="_blank"
+        rel="noreferrer"
+        onClick={handleClick}
+      >
         <IconMail data-icon="inline-start" />
-        {ui.actions.sendEmail}
+        <span className="hidden sm:inline">
+          Email me: <span className="font-mono">{email}</span>
+        </span>
+        <span className="sm:hidden">{ui.actions.sendEmail}</span>
       </a>
     </Button>
   );
