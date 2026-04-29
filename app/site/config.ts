@@ -1,10 +1,11 @@
 import type { SiteConfig } from "@/types";
+import { withBase } from "@/utils/asset";
 
 export const siteConfig: SiteConfig = {
   defaultLanguage: "en-US",
-  avatarSrc: "/images/avatar/xinxian.png",
+  avatarSrc: withBase("/images/avatar/xinxian.png"),
   resume: {
-    href: "/documents/resume.md",
+    href: withBase("/documents/resume.md"),
     downloadName: "resume.md",
     email: "xinxian.ma@epfl.ch",
   },

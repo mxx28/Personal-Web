@@ -1,4 +1,5 @@
 import { defineProjects, type SiteContent } from "../types";
+import { withBase } from "@/utils/asset";
 
 const home = {
   profile: {
@@ -78,7 +79,7 @@ const home = {
         period: "2026 - Present",
         location: "Lausanne, Switzerland",
         logoText: "DL",
-        logoSrc: "/images/company-logos/dlab.png",
+        logoSrc: withBase("/images/company-logos/dlab.png"),
         logoAlt: "DLAB logo",
         tags: ["LLMs", "Decoding", "NLP"],
         highlights: [
@@ -95,7 +96,7 @@ const home = {
         period: "Apr, 2024 - Aug, 2024",
         location: "Shenzhen, China",
         logoText: "SR",
-        logoSrc: "/images/company-logos/sribd.png",
+        logoSrc: withBase("/images/company-logos/sribd.png"),
         logoAlt: "Shenzhen Research Institute of Big Data logo",
         tags: ["Federated Learning", "High-dimensional Visualization", "MMD"],
         highlights: [
@@ -112,7 +113,7 @@ const home = {
         period: "Jun, 2025 - Aug, 2025",
         location: "Shenzhen, China",
         logoText: "FW",
-        logoSrc: "/images/company-logos/flywheel.png",
+        logoSrc: withBase("/images/company-logos/flywheel.png"),
         logoAlt: "Flywheel logo",
         tags: ["AMC SQL", "Analytics", "Attribution", "Benchmarking"],
         highlights: [
@@ -129,8 +130,8 @@ const home = {
         period: "Feb, 2025 - Aug, 2025",
         location: "Shenzhen, China",
         logoText: "A",
-        logoSrc: "/images/company-logos/anker.svg",
-        logoDarkSrc: "/images/company-logos/anker-dark.svg",
+        logoSrc: withBase("/images/company-logos/anker.svg"),
+        logoDarkSrc: withBase("/images/company-logos/anker-dark.svg"),
         logoAlt: "Anker logo",
         tags: ["EDA", "Anomaly Detection", "Forecasting", "LightGBM", "Clustering", "DTW"],
         highlights: [
@@ -169,7 +170,7 @@ const home = {
         id: "fed-tsne-umap",
         title: "Federated t-SNE and UMAP for Distributed Data Visualization",
         authors: "Dong Qiao, Xinxian Ma, Jicong Fan",
-        cover: "/images/publications/fed-tsne-umap-cover.jpg",
+        cover: withBase("/images/publications/fed-tsne-umap-cover.jpg"),
         tags: ["AAAI 2025"],
         topics: ["ML", "Unsupervised Learning", "Federated Learning"],
         abstract:
@@ -221,7 +222,7 @@ const home = {
         title: "Learning MCMC through the Ising Model",
         summary:
           "A practical, visual introduction to Metropolis, Gibbs sampling, and exact sampling (CFTP) using the Ising model.",
-        cover: "/images/blog-covers/learning-mcmc-ising.png",
+        cover: withBase("/images/blog-covers/learning-mcmc-ising.png"),
         badge: "MCMC",
       },
       {
@@ -229,7 +230,7 @@ const home = {
         title: "Federated Visualization Insights",
         summary:
           "Ideas behind Fed-tSNE / Fed-UMAP and how privacy constraints shape visualization workflows.",
-        cover: "/images/publications/fed-tsne-umap-cover.jpg",
+        cover: withBase("/images/publications/fed-tsne-umap-cover.jpg"),
         badge: "Federated",
       },
       {
@@ -237,7 +238,7 @@ const home = {
         title: "From Prototype to Paper",
         summary:
           "Turning experiments into a clean narrative: hypotheses, ablations, and reproducible results.",
-        cover: "/images/publications/fed-tsne-umap-cover.jpg",
+        cover: withBase("/images/publications/fed-tsne-umap-cover.jpg"),
         badge: "Research",
       },
     ],
@@ -321,7 +322,7 @@ const home = {
 const projects = defineProjects({
   "nextjs-authentication-scaffold": {
     slug: "nextjs-authentication-scaffold",
-    cover: "/images/projects/nextjs-authentication-scaffold.webp",
+    cover: withBase("/images/projects/nextjs-authentication-scaffold.webp"),
     name: "Next.js-Authentication-Scaffold",
     summary:
       "A full-featured, modular Next.js authentication system scaffold with Email/Phone OTP, passkeys, and wallet connections.",
@@ -361,7 +362,7 @@ const projects = defineProjects({
   },
   "three-d-face-particles": {
     slug: "three-d-face-particles",
-    cover: "/images/projects/3d-face.webp",
+    cover: withBase("/images/projects/3d-face.webp"),
     name: "3D Face Particles",
     summary:
       "A GPU particle-face experiment driven by depth maps, shader noise fields, and smooth face-to-face morph transitions.",

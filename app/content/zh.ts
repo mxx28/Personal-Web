@@ -1,4 +1,5 @@
 import { type ProjectMap, type SiteContent } from "../types";
+import { withBase } from "@/utils/asset";
 
 type ProjectSlug = Extract<
   keyof typeof import("./en").default.projects,
@@ -72,7 +73,7 @@ const home = {
         period: "2026年 - 至今",
         location: "洛桑，瑞士",
         logoText: "DL",
-        logoSrc: "/images/company-logos/dlab.png",
+        logoSrc: withBase("/images/company-logos/dlab.png"),
         logoAlt: "DLAB logo",
         tags: ["大语言模型（LLM）", "解码", "NLP"],
         highlights: [
@@ -89,7 +90,7 @@ const home = {
         period: "2024年4月 - 2024年8月",
         location: "深圳，中国",
         logoText: "SR",
-        logoSrc: "/images/company-logos/sribd.png",
+        logoSrc: withBase("/images/company-logos/sribd.png"),
         logoAlt: "Shenzhen Research Institute of Big Data logo",
         tags: ["联邦学习", "高维可视化", "MMD"],
         highlights: [
@@ -106,7 +107,7 @@ const home = {
         period: "2025年6月 - 2025年8月",
         location: "深圳，中国",
         logoText: "FW",
-        logoSrc: "/images/company-logos/flywheel.png",
+        logoSrc: withBase("/images/company-logos/flywheel.png"),
         logoAlt: "Flywheel logo",
         tags: ["AMC SQL", "分析", "归因", "对标"],
         highlights: [
@@ -123,8 +124,8 @@ const home = {
         period: "2025年2月 - 2025年8月",
         location: "深圳，中国",
         logoText: "A",
-        logoSrc: "/images/company-logos/anker.svg",
-        logoDarkSrc: "/images/company-logos/anker-dark.svg",
+        logoSrc: withBase("/images/company-logos/anker.svg"),
+        logoDarkSrc: withBase("/images/company-logos/anker-dark.svg"),
         logoAlt: "Anker logo",
         tags: ["EDA", "异常检测", "需求预测", "LightGBM", "聚类", "DTW"],
         highlights: [
@@ -163,7 +164,7 @@ const home = {
         id: "fed-tsne-umap",
         title: "Federated t-SNE and UMAP for Distributed Data Visualization",
         authors: "Dong Qiao, Xinxian Ma, Jicong Fan",
-        cover: "/images/publications/fed-tsne-umap-cover.jpg",
+        cover: withBase("/images/publications/fed-tsne-umap-cover.jpg"),
         tags: ["AAAI 2025"],
         topics: ["ML", "Unsupervised Learning", "Federated Learning"],
         abstract:
@@ -215,21 +216,21 @@ const home = {
         title: "通过 Ising 模型学习 MCMC",
         summary:
           "用 Ising 模型直观理解 Metropolis、Gibbs 采样与精确采样（CFTP）的实践型入门。",
-        cover: "/images/blog-covers/learning-mcmc-ising.png",
+        cover: withBase("/images/blog-covers/learning-mcmc-ising.png"),
         badge: "MCMC",
       },
       {
         id: "blog-federated-visualization",
         title: "联邦可视化的思路",
         summary: "Fed-tSNE / Fed-UMAP 的核心直觉，以及隐私约束如何影响工作流。",
-        cover: "/images/publications/fed-tsne-umap-cover.jpg",
+        cover: withBase("/images/publications/fed-tsne-umap-cover.jpg"),
         badge: "联邦学习",
       },
       {
         id: "blog-from-prototype-to-paper",
         title: "从实验到论文的叙事",
         summary: "把实验整理成清晰的故事：假设、消融与可复现的结果呈现。",
-        cover: "/images/publications/fed-tsne-umap-cover.jpg",
+        cover: withBase("/images/publications/fed-tsne-umap-cover.jpg"),
         badge: "科研",
       },
     ],
@@ -313,7 +314,7 @@ const home = {
 const projects: ProjectMap<ProjectSlug> = {
   "nextjs-authentication-scaffold": {
     slug: "nextjs-authentication-scaffold",
-    cover: "/images/projects/nextjs-authentication-scaffold.webp",
+    cover: withBase("/images/projects/nextjs-authentication-scaffold.webp"),
     name: "Next.js-Authentication-Scaffold",
     summary:
       "一个功能完整、模块化的 Next.js 认证系统脚手架，支持邮箱/手机 OTP、Passkey 生物认证与钱包连接。",
@@ -353,7 +354,7 @@ const projects: ProjectMap<ProjectSlug> = {
   },
   "three-d-face-particles": {
     slug: "three-d-face-particles",
-    cover: "/images/projects/3d-face.webp",
+    cover: withBase("/images/projects/3d-face.webp"),
     name: "3D Face Particles",
     summary:
       "基于深度图与 GLSL 的人脸粒子重建实验，支持多人脸插值切换与噪声驱动形变。",
