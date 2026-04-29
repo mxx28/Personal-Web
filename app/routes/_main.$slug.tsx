@@ -6,19 +6,10 @@ import SectionFrame from "@/components/Center/SectionFrame";
 import { NotFound } from "@/components/Center/ProjectDetail/NotFound";
 import { useProject } from "@/hooks/useProjects";
 import { Tabs } from "@/components/ui/tabs";
-import type { Route } from "./+types/_main.$slug";
-import { ScrollRestoration } from "react-router";
+import { ScrollRestoration, useParams } from "react-router";
 
-export function loader({ params }: Route.LoaderArgs) {
-  return {
-    slug: params.slug,
-  };
-}
-
-export default function ProjectDetailRoute({
-  loaderData,
-}: Route.ComponentProps) {
-  const { slug } = loaderData;
+export default function ProjectDetailRoute() {
+  const { slug = "" } = useParams();
   const project = useProject(slug);
 
   return (

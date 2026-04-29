@@ -1,13 +1,9 @@
 import type { Config } from "@react-router/dev/config";
-import { projectSlugs } from "./app/content";
 
 export default {
   appDirectory: "app",
-  ssr: true,
-  async prerender({ getStaticPaths }) {
-    return [
-      ...getStaticPaths(),
-      ...projectSlugs.map((slug) => `/${slug}`),
-    ];
-  },
+  // GitHub Pages needs a static SPA build.
+  ssr: false,
+  // Repo: https://mxx28.github.io/Personal-Web/
+  basename: "/Personal-Web",
 } satisfies Config;
