@@ -124,7 +124,7 @@ export function ExperienceList({
         <TabsList
           aria-label="Experience filters"
           variant="line"
-          className="mt-1 flex h-10 w-full min-w-0 rounded-none bg-transparent p-0 px-1.5 text-foreground"
+          className="mt-1 flex h-11 w-full min-w-0 rounded-none bg-transparent p-0 px-2 text-foreground sm:h-12"
         >
           {[
             { value: "research", label: "Research" },
@@ -134,7 +134,7 @@ export function ExperienceList({
               {index > 0 && <Separator orientation="vertical" />}
               <TabsTrigger
                 value={tab.value}
-                className="min-w-0 flex-1 basis-0 rounded-none py-2 data-active:bg-transparent data-active:text-foreground"
+                className="min-w-0 flex-1 basis-0 rounded-none py-2.5 text-sm data-active:bg-transparent data-active:text-foreground sm:py-3"
               >
                 {tab.label}
               </TabsTrigger>

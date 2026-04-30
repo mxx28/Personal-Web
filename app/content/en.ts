@@ -6,14 +6,21 @@ const home = {
     tocLabel: "Profile",
     name: "Xinxian Ma",
     avatarAlt: "Xinxian Ma avatar",
-    roles: ["Machine Learning", "LLMs", "Data Science", "Data Analysis"],
+    roles: ["Master in Data Science", "Machine Learning", "LLMs", "Data Science"],
   },
   about: {
     tocLabel: "About",
     greeting: [
-      { text: "Hi, I'm Xinxian, a M.Sc. Data Science student at " },
-      { text: "EPFL", href: "https://www.epfl.ch/" },
-      { text: ". I'm from China and I'm very interested in Machine Learning and Large Language Models." },
+      [
+        { text: "Hi, I'm Xinxian, a M.Sc. Data Science student at " },
+        { text: "EPFL", href: "https://www.epfl.ch/" },
+        { text: "." },
+      ],
+      [
+        {
+          text: "I'm from China and I'm very interested in Machine Learning and Large Language Models.",
+        },
+      ],
     ],
     school: {
       name: "EPFL",
@@ -170,7 +177,7 @@ const home = {
         id: "fed-tsne-umap",
         title: "Federated t-SNE and UMAP for Distributed Data Visualization",
         authors: "Dong Qiao, Xinxian Ma, Jicong Fan",
-        cover: withBase("/images/publications/fed-tsne-umap-cover.jpg"),
+        cover: withBase("/images/publications/fed-tsne-umap-cover.png"),
         tags: ["AAAI 2025"],
         topics: ["ML", "Unsupervised Learning", "Federated Learning"],
         abstract:
@@ -223,22 +230,22 @@ const home = {
         summary:
           "A practical, visual introduction to Metropolis, Gibbs sampling, and exact sampling (CFTP) using the Ising model.",
         cover: withBase("/images/blog-covers/learning-mcmc-ising.png"),
-        badge: "MCMC",
+        badge: "Technical",
       },
       {
-        id: "blog-federated-visualization",
-        title: "Federated Visualization Insights",
+        id: "why-write-a-blog",
+        title: "Why Write a Blog",
         summary:
-          "Ideas behind Fed-tSNE / Fed-UMAP and how privacy constraints shape visualization workflows.",
-        cover: withBase("/images/publications/fed-tsne-umap-cover.jpg"),
-        badge: "Federated",
+          "Why writing blogs quietly changed the way I learn.",
+        cover: withBase("/images/blog-covers/why-write-a-blog.png"),
+        badge: "Personal",
       },
       {
         id: "blog-from-prototype-to-paper",
         title: "From Prototype to Paper",
         summary:
           "Turning experiments into a clean narrative: hypotheses, ablations, and reproducible results.",
-        cover: withBase("/images/publications/fed-tsne-umap-cover.jpg"),
+        cover: withBase("/images/publications/fed-tsne-umap-cover.png"),
         badge: "Research",
       },
     ],
@@ -322,14 +329,13 @@ const home = {
 const projects = defineProjects({
   "nextjs-authentication-scaffold": {
     slug: "nextjs-authentication-scaffold",
-    cover: withBase("/images/projects/nextjs-authentication-scaffold.webp"),
-    name: "Next.js-Authentication-Scaffold",
+    cover: withBase("/images/projects/nextjs-authentication-scaffold.png"),
+    name: "SwissReach",
     summary:
-      "A full-featured, modular Next.js authentication system scaffold with Email/Phone OTP, passkeys, and wallet connections.",
-    intro:
-      "A full-featured, modular Next.js authentication system scaffold with multiple modern authentication methods including Email/Phone OTP, Passkey biometrics, and wallet connections.",
+      "Swiss public transport, retail density, and everyday access in one national view.",
+    intro: "everyday reachability, visualized Switzerland//",
     detail:
-      "Built with Next.js 16, React 19, TypeScript, Prisma, and PostgreSQL, this scaffold provides a practical starting point for secure, extensible authentication flows in production apps.",
+      "Swiss public transport, retail density, and everyday access in one national view.",
     status: "online",
     stack: [
       "Next.js 16",

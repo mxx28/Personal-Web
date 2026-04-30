@@ -13,6 +13,7 @@ import { useSiteContent } from "@/hooks/useSiteContent";
 import type { Language } from "@/provider/language-provider";
 import { cn } from "@/lib/utils";
 import type { ProjectSlug } from "@/content";
+import { withBase } from "@/utils/asset";
 
 type ReadmeTabProps = {
   locale: Language;
@@ -83,7 +84,7 @@ export function ReadmeTab({ locale, slug }: ReadmeTabProps) {
     let isCurrent = true;
     const markdownPaths = ["_cn", ""]
       .filter((suffix) => locale === "zh-CN" || suffix === "")
-      .map((suffix) => `/markdown/${slug}${suffix}.md`);
+      .map((suffix) => withBase(`/markdown/${slug}${suffix}.md`));
 
     async function loadMarkdown() {
       setIsMarkdownLoading(true);

@@ -14,12 +14,14 @@ export default function UserCard() {
       {/* Left */}
       <div className="flex min-w-0 items-center gap-4 sm:gap-4">
         {/* Avatar */}
-        <div className="size-16 shrink-0 overflow-hidden rounded-2xl sm:size-20">
-          <img
-            src={siteConfig.avatarSrc}
-            alt={profile.avatarAlt}
-            className="h-full w-full object-cover"
-          />
+        <div className="size-18 shrink-0 rounded-2xl bg-background p-0.5 ring-1 ring-black/20 sm:size-24 dark:ring-white/25">
+          <div className="h-full w-full overflow-hidden rounded-[calc(theme(borderRadius.2xl)-2px)]">
+            <img
+              src={siteConfig.avatarSrc}
+              alt={profile.avatarAlt}
+              className="h-full w-full object-cover"
+            />
+          </div>
         </div>
 
         {/* Info */}

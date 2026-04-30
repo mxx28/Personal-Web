@@ -164,7 +164,7 @@ const home = {
         id: "fed-tsne-umap",
         title: "Federated t-SNE and UMAP for Distributed Data Visualization",
         authors: "Dong Qiao, Xinxian Ma, Jicong Fan",
-        cover: withBase("/images/publications/fed-tsne-umap-cover.jpg"),
+        cover: withBase("/images/publications/fed-tsne-umap-cover.png"),
         tags: ["AAAI 2025"],
         topics: ["ML", "Unsupervised Learning", "Federated Learning"],
         abstract:
@@ -217,20 +217,20 @@ const home = {
         summary:
           "用 Ising 模型直观理解 Metropolis、Gibbs 采样与精确采样（CFTP）的实践型入门。",
         cover: withBase("/images/blog-covers/learning-mcmc-ising.png"),
-        badge: "MCMC",
+        badge: "Technical",
       },
       {
-        id: "blog-federated-visualization",
-        title: "联邦可视化的思路",
-        summary: "Fed-tSNE / Fed-UMAP 的核心直觉，以及隐私约束如何影响工作流。",
-        cover: withBase("/images/publications/fed-tsne-umap-cover.jpg"),
-        badge: "联邦学习",
+        id: "why-write-a-blog",
+        title: "为什么写博客",
+        summary: "以前我一直觉得，写博客这件事离我挺远的。",
+        cover: withBase("/images/blog-covers/why-write-a-blog.png"),
+        badge: "Personal",
       },
       {
         id: "blog-from-prototype-to-paper",
         title: "从实验到论文的叙事",
         summary: "把实验整理成清晰的故事：假设、消融与可复现的结果呈现。",
-        cover: withBase("/images/publications/fed-tsne-umap-cover.jpg"),
+        cover: withBase("/images/publications/fed-tsne-umap-cover.png"),
         badge: "科研",
       },
     ],
@@ -314,14 +314,13 @@ const home = {
 const projects: ProjectMap<ProjectSlug> = {
   "nextjs-authentication-scaffold": {
     slug: "nextjs-authentication-scaffold",
-    cover: withBase("/images/projects/nextjs-authentication-scaffold.webp"),
-    name: "Next.js-Authentication-Scaffold",
+    cover: withBase("/images/projects/nextjs-authentication-scaffold.png"),
+    name: "SwissReach",
     summary:
-      "一个功能完整、模块化的 Next.js 认证系统脚手架，支持邮箱/手机 OTP、Passkey 生物认证与钱包连接。",
-    intro:
-      "一个功能完整、模块化的 Next.js 认证系统脚手架，集成多种现代认证方式，包括邮箱/手机 OTP、Passkey 生物识别与钱包连接。",
+      "Swiss public transport, retail density, and everyday access in one national view.",
+    intro: "everyday reachability, visualized Switzerland//",
     detail:
-      "项目基于 Next.js 16、React 19、TypeScript、Prisma 与 PostgreSQL 构建，可作为生产级应用快速接入安全且可扩展认证流程的起点。",
+      "Swiss public transport, retail density, and everyday access in one national view.",
     status: "online",
     stack: [
       "Next.js 16",

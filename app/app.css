@@ -8,6 +8,8 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* Main column max width (must stay in sync with ScrollAnchorToc positioning) */
+  --layout-content-max: 64rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -128,6 +130,18 @@
   }
   html {
     @apply font-sans;
+    /* 16px baseline on phone；桌面视口略放大根字号，让 rem 文字与更宽的主栏更匹配 */
+    font-size: 100%;
+  }
+  @media (min-width: 1024px) {
+    html {
+      font-size: 106.25%;
+    }
+  }
+  @media (min-width: 1280px) {
+    html {
+      font-size: 108.75%;
+    }
   }
   button:not(:disabled),
   [role="button"]:not(:disabled) {

@@ -1,5 +1,12 @@
 import { ActivityCalendar } from "react-activity-calendar";
-import { useCallback, useMemo, type ReactElement, type SVGProps } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactElement,
+  type SVGProps,
+} from "react";
 import SectionHeader from "@/components/Center/SectionHeader";
 import { formatContentTemplate } from "@/content";
 import { useSiteContent } from "@/hooks/useSiteContent";
@@ -56,6 +63,23 @@ function generateData(
   return { data, tooltipByDate };
 }
 
+function useMinWidthMedia(px: number) {
+  const [matches, setMatches] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia(`(min-width:${px}px)`).matches;
+  });
+
+  useEffect(() => {
+    const mq = window.matchMedia(`(min-width:${px}px)`);
+    const onChange = () => setMatches(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, [px]);
+
+  return matches;
+}
+
 export default function Calendar() {
   const {
     home: { github },
@@ -64,6 +88,7 @@ export default function Calendar() {
   const { theme } = useTheme();
   const currentYear = new Date().getUTCFullYear();
   const calendarLocale = locale;
+  const wideLayout = useMinWidthMedia(1024);
 
   const { data, tooltipByDate } = useMemo(
     () =>
@@ -128,8 +153,9 @@ export default function Calendar() {
           <div className="flex justify-center">
             <ActivityCalendar
               data={data}
-              blockMargin={2}
-              blockSize={12}
+              blockMargin={wideLayout ? 2.5 : 2}
+              blockSize={wideLayout ? 14 : 12}
+              fontSize={wideLayout ? 13 : 12}
               renderBlock={renderBlock}
               labels={labels}
               colorScheme={theme}

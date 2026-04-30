@@ -40,7 +40,8 @@ export type SiteConfig = {
     bookingUrl?: string;
     socials: SocialLinkConfig[];
   };
-  visitorCount?: number;
+  /** Shown in profile header (e.g. countries / bases). */
+  profileLocations?: string;
 };
 
 export type HomeSectionId = string;
@@ -161,7 +162,13 @@ export type HomeAboutContent = {
     | Array<{
         text: string;
         href?: string;
-      }>;
+      }>
+    | Array<
+        Array<{
+          text: string;
+          href?: string;
+        }>
+      >;
   status:
     | string
     | Array<{

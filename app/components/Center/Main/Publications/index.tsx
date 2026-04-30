@@ -1,13 +1,10 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import SectionHeader from "@/components/Center/SectionHeader";
 import { Badge } from "@/components/ui/badge";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { IconBrandGithub, IconFileText } from "@tabler/icons-react";
+import { IconArrowNarrowRight } from "@tabler/icons-react";
+import { Link, useViewTransitionState } from "react-router";
+import { TransitionImage } from "@/components/TransitionImage";
 
 function PublicationLinks({
   links,
@@ -36,7 +33,12 @@ function PublicationLinks({
     <div className="mt-2 flex flex-wrap gap-2">
       {entries.map(([key, href]) => (
         <Badge key={key} asChild variant="outline">
-          <a href={href!} target="_blank" rel="noreferrer">
+          <a
+            href={href!}
+            target="_blank"
+            rel="noreferrer"
+            onClick={(e) => e.stopPropagation()}
+          >
             {iconMap[key] ? (
               (() => {
                 const Icon = iconMap[key]!;
@@ -46,46 +48,6 @@ function PublicationLinks({
             {labelMap[key] ?? key}
           </a>
         </Badge>
-      ))}
-    </div>
-  );
-}
-
-function Abstract({ text }: { text?: string }) {
-  if (!text?.trim()) return null;
-  const paragraphs = text.split(/\n\s*\n/g).map((p) => p.trim()).filter(Boolean);
-  if (paragraphs.length === 0) return null;
-
-  return (
-    <div className="flex flex-col gap-3 text-sm leading-7 text-muted-foreground">
-      {paragraphs.map((p, idx) => (
-        <p key={idx}>{p}</p>
-      ))}
-    </div>
-  );
-}
-
-function RepoLinks({
-  links,
-}: {
-  links?: Partial<Record<"pdf" | "arxiv" | "code" | "project", string>>;
-}) {
-  if (!links) return null;
-  const entries = Object.entries(links).filter(([, href]) => href?.trim());
-  if (entries.length === 0) return null;
-
-  return (
-    <div className="flex flex-col gap-2 text-sm text-muted-foreground">
-      {entries.map(([key, href]) => (
-        <a
-          key={key}
-          href={href!}
-          target="_blank"
-          rel="noreferrer"
-          className="underline underline-offset-4 hover:text-foreground"
-        >
-          {key.toUpperCase()}: {href}
-        </a>
       ))}
     </div>
   );
@@ -133,93 +95,87 @@ export default function Publications() {
             Add your publications here.
           </p>
         ) : (
-          <Accordion type="single" collapsible>
-            {publications.items.map((pub, index) => (
-              <div key={pub.id}>
-                <AccordionItem
-                  value={pub.id}
-                  className="group px-4 transition-colors hover:bg-muted/30 not-last:border-b-0"
-                >
-                  <AccordionTrigger className="py-4 hover:no-underline">
-                    <div className="flex w-full flex-col text-left">
-                      <div className="flex w-full items-start justify-between gap-4 pr-2 transition-all duration-300 group-hover:-translate-y-1">
-                        <div className="flex min-w-0 flex-col gap-1 text-left">
-                          <div className="text-sm font-semibold leading-snug text-title">
-                            {pub.title}
-                          </div>
-                          <AuthorsLine authors={pub.authors} />
-                          {pub.tags?.length ? (
-                            <div className="pt-1">
-                              <div className="flex flex-wrap gap-1.5">
-                                {pub.tags.map((tag) => (
-                                  <Badge
-                                    key={tag}
-                                    variant="secondary"
-                                    className="h-5 px-2 py-0 text-[0.625rem] border-border/60 bg-secondary/80"
-                                  >
-                                    {tag}
-                                  </Badge>
-                                ))}
-                              </div>
-                            </div>
-                          ) : null}
-                          <PublicationLinks links={pub.links} />
+          <div>
+            {publications.items.map((pub, index) => {
+              const href = `/publication/${pub.id}`;
+              return (
+                <div key={pub.id}>
+                  <Link
+                    to={href}
+                    viewTransition
+                    state={{ cover: pub.cover }}
+                    className="group relative block px-4 py-4 transition-colors hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30"
+                  >
+                    <div className="flex w-full items-start justify-between gap-4 pr-2 transition-all duration-300 group-hover:-translate-y-1">
+                      <div className="flex min-w-0 flex-col gap-1 text-left">
+                        <div className="text-sm font-semibold leading-snug text-title underline-offset-4 group-hover:underline">
+                          {pub.title}
                         </div>
-
-                        {pub.cover ? (
-                          <div className="hidden shrink-0 sm:block">
-                            <div className="relative h-24 w-40 overflow-hidden rounded-xl border border-border p-1">
-                              <img
-                                src={pub.cover}
-                                alt={`${pub.title} cover`}
-                                className="block size-full rounded-lg object-cover"
-                                loading="lazy"
-                              />
+                        <AuthorsLine authors={pub.authors} />
+                        {pub.tags?.length ? (
+                          <div className="pt-1">
+                            <div className="flex flex-wrap gap-1.5">
+                              {pub.tags.map((tag) => (
+                                <Badge
+                                  key={tag}
+                                  variant="secondary"
+                                  className="h-5 px-2 py-0 text-[0.625rem] border-border/60 bg-secondary/80"
+                                >
+                                  {tag}
+                                </Badge>
+                              ))}
                             </div>
                           </div>
                         ) : null}
+                        <PublicationLinks links={pub.links} />
                       </div>
-                    </div>
-                  </AccordionTrigger>
 
-                  <AccordionContent className="pb-4">
-                    <div className="pt-2">
-                      <div className="pb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                        Overview
-                      </div>
-                      {pub.topics?.length ? (
-                        <div className="pb-3">
-                          <div className="flex flex-wrap gap-1.5">
-                            {pub.topics.map((tag) => (
-                              <Badge
-                                key={tag}
-                                variant="secondary"
-                                className="h-5 px-2 py-0 text-[0.625rem] border-border/60 bg-secondary/80"
-                              >
-                                {tag}
-                              </Badge>
-                            ))}
-                          </div>
-                        </div>
-                      ) : null}
-                      <Abstract text={pub.abstract} />
-                      {pub.links ? (
-                        <div className="pt-4">
-                          <RepoLinks links={pub.links} />
+                      {pub.cover ? (
+                        <div className="hidden shrink-0 sm:block">
+                          <PublicationCover
+                            pubId={pub.id}
+                            cover={pub.cover}
+                            title={pub.title}
+                          />
                         </div>
                       ) : null}
                     </div>
-                  </AccordionContent>
-                </AccordionItem>
-                {index < publications.items.length - 1 && (
-                  <div className="double-divider" />
-                )}
-              </div>
-            ))}
-          </Accordion>
+
+                    <span className="pointer-events-none absolute bottom-3 left-4 flex items-center gap-1 text-xs font-medium text-muted-foreground transition-colors group-hover:text-foreground">
+                      View details <IconArrowNarrowRight data-icon="inline-end" />
+                    </span>
+                  </Link>
+
+                  {index < publications.items.length - 1 && (
+                    <div className="double-divider" />
+                  )}
+                </div>
+              );
+            })}
+          </div>
         )}
       </div>
     </>
+  );
+}
+
+function PublicationCover({
+  pubId,
+  cover,
+  title,
+}: {
+  pubId: string;
+  cover: string;
+  title: string;
+}) {
+  const href = `/publication/${pubId}`;
+  const isTransitioning = useViewTransitionState(href);
+  const transitionName = isTransitioning ? `publication-cover-${pubId}` : "none";
+
+  return (
+    <div className="relative h-24 w-40 overflow-hidden rounded-xl border border-border p-1 md:h-32 md:w-52 lg:h-36 lg:w-60">
+      <TransitionImage transitionName={transitionName} src={cover} alt={`${title} cover`} />
+    </div>
   );
 }
 

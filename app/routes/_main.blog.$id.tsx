@@ -3,6 +3,7 @@ import {
   useParams,
   ScrollRestoration,
   Link,
+  Navigate,
   useLocation,
   useViewTransitionState,
 } from "react-router";
@@ -16,6 +17,9 @@ import { Button } from "@/components/ui/button";
 import { IconChevronLeft } from "@tabler/icons-react";
 import { TransitionImage } from "@/components/TransitionImage";
 import { ModeToggle } from "@/components/ModeToggle";
+import { useLanguage } from "@/provider/language-provider";
+import { withBase } from "@/utils/asset";
+import type { SiteLanguage } from "@/types";
 
 const markdownComponents: Components = {
   h1: ({ node: _node, ...props }) => (
@@ -60,6 +64,9 @@ const markdownComponents: Components = {
       {...props}
     />
   ),
+  hr: ({ node: _node, ...props }) => (
+    <hr className="my-8 border-0 border-t border-border/55 sm:my-10" {...props} />
+  ),
 };
 
 type Frontmatter = {
@@ -88,8 +95,31 @@ function parseFrontmatter(markdown: string): { frontmatter: Frontmatter; body: s
   return { frontmatter, body: markdown.slice(match[0].length) };
 }
 
+function getEstimatedReadingMinutes(markdown: string, locale: SiteLanguage) {
+  const withoutCode = markdown.replace(/```[\s\S]*?```/g, " ");
+  const withoutInlineCode = withoutCode.replace(/`[^`]*`/g, " ");
+  const withoutLinks = withoutInlineCode.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+  const withoutMath = withoutLinks.replace(/\$\$[\s\S]*?\$\$|\$[^$]*\$/g, " ");
+  const withoutHeadings = withoutMath.replace(/^#{1,6}\s+/gm, "");
+  const text = withoutHeadings
+    .replace(/[*_~>#-]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (!text) return null;
+
+  const cjkChars = (text.match(/[\u4e00-\u9fff]/g) ?? []).length;
+  if (locale === "zh-CN" && cjkChars > 40) {
+    return Math.max(1, Math.ceil(cjkChars / 400));
+  }
+
+  const words = text.split(" ").filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 200));
+}
+
 export default function BlogDetailRoute() {
   const { id } = useParams();
+  const { locale } = useLanguage();
   const location = useLocation();
   const coverFromState = (location.state as { cover?: string } | null)?.cover;
   const href = id ? `/blog/${id}` : "/blog";
@@ -107,9 +137,19 @@ export default function BlogDetailRoute() {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch(`/blogs/${id}.md`);
-        if (!res.ok) throw new Error("not found");
-        const text = await res.text();
+        const paths =
+          locale === "zh-CN"
+            ? [`/blogs/${id}.zh.md`, `/blogs/${id}.md`]
+            : [`/blogs/${id}.md`];
+        let text = "";
+        for (const path of paths) {
+          const res = await fetch(withBase(path));
+          if (res.ok) {
+            text = await res.text();
+            break;
+          }
+        }
+        if (!text) throw new Error("not found");
         if (!current) return;
         setRaw(text);
       } catch {
@@ -124,9 +164,45 @@ export default function BlogDetailRoute() {
     return () => {
       current = false;
     };
-  }, [id]);
+  }, [id, locale]);
 
   const parsed = useMemo(() => parseFrontmatter(raw), [raw]);
+  const readingMinutes = useMemo(
+    () => getEstimatedReadingMinutes(parsed.body, locale),
+    [parsed.body, locale],
+  );
+
+  const readingTimeLabel =
+    readingMinutes == null
+      ? ""
+      : locale === "zh-CN"
+        ? `约 ${readingMinutes} 分钟阅读`
+        : `${readingMinutes} min read`;
+
+  const articleMarkdownComponents = useMemo(() => {
+    if (id !== "why-write-a-blog") {
+      return markdownComponents;
+    }
+    return {
+      ...markdownComponents,
+      hr: () => (
+        <div
+          className="h-6 shrink-0 sm:h-8"
+          aria-hidden
+          role="presentation"
+        />
+      ),
+    };
+  }, [id]);
+
+  if (id === "blog-federated-visualization") {
+    return (
+      <>
+        <ScrollRestoration />
+        <Navigate to="/blog/why-write-a-blog" replace state={location.state} />
+      </>
+    );
+  }
 
   return (
     <>
@@ -175,7 +251,13 @@ export default function BlogDetailRoute() {
               </p>
             ) : null}
             {parsed.frontmatter.date ? (
-              <p className="text-xs text-muted-foreground">{parsed.frontmatter.date}</p>
+              <p className="text-xs text-muted-foreground">
+                {parsed.frontmatter.date}
+                {readingTimeLabel ? ` · ${readingTimeLabel}` : ""}
+              </p>
+            ) : null}
+            {!parsed.frontmatter.date && readingTimeLabel ? (
+              <p className="text-xs text-muted-foreground">{readingTimeLabel}</p>
             ) : null}
           </div>
 
@@ -186,7 +268,7 @@ export default function BlogDetailRoute() {
           ) : (
             <div className="flex max-w-none flex-col gap-3 text-sm">
               <ReactMarkdown
-                components={markdownComponents}
+                components={articleMarkdownComponents}
                 remarkPlugins={[remarkMath]}
                 rehypePlugins={[rehypeKatex]}
               >

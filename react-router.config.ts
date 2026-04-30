@@ -4,6 +4,8 @@ export default {
   appDirectory: "app",
   // GitHub Pages needs a static SPA build.
   ssr: false,
-  // Repo: https://mxx28.github.io/Personal-Web/
-  basename: "/Personal-Web",
+  // GitHub Pages project site path:
+  // - dev: serve at "/"
+  // - prod: deploy under "/Personal-Web/"
+  basename: process.env.NODE_ENV === "production" ? "/Personal-Web" : "/",
 } satisfies Config;

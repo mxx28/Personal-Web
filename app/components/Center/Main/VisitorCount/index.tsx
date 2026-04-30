@@ -1,16 +1,17 @@
-import { IconEye } from "@tabler/icons-react";
+import { IconMapPin } from "@tabler/icons-react";
 import { Badge } from "@/components/ui/badge";
 import { siteConfig } from "@/site/config";
 
 export default function VisitorCount() {
-  if (siteConfig.visitorCount === undefined) {
+  const label = siteConfig.profileLocations?.trim();
+  if (!label) {
     return null;
   }
 
   return (
-    <Badge variant="secondary">
-      <IconEye />
-      {siteConfig.visitorCount}
+    <Badge variant="secondary" className="max-w-[min(100%,14rem)]">
+      <IconMapPin />
+      <span className="truncate">{label}</span>
     </Badge>
   );
 }

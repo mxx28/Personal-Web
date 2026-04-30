@@ -21,7 +21,12 @@ function SocialHoverCardItem({ social }: { social: SocialLinkConfig }) {
   return (
     <HoverCard openDelay={100} closeDelay={100}>
       <HoverCardTrigger asChild>
-        <Button variant="secondary" size="sm" asChild>
+        <Button
+          variant="secondary"
+          size="lg"
+          className="h-9 min-w-[7.5rem] px-3.5 text-sm [&_svg:not([class*='size-'])]:size-4"
+          asChild
+        >
           <a href={social.href} target="_blank" rel="noreferrer">
             {Icon ? <Icon data-icon="inline-start" /> : null}
             {social.label}

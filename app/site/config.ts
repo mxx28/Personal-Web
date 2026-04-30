@@ -3,7 +3,7 @@ import { withBase } from "@/utils/asset";
 
 export const siteConfig: SiteConfig = {
   defaultLanguage: "en-US",
-  avatarSrc: withBase("/images/avatar/xinxian.png"),
+  avatarSrc: withBase("/images/avatar/xinxian-3.png"),
   resume: {
     href: withBase("/documents/resume.md"),
     downloadName: "resume.md",
@@ -36,5 +36,5 @@ export const siteConfig: SiteConfig = {
       },
     ],
   },
-  visitorCount: 100,
+  profileLocations: "China / Switzerland / USA",
 } satisfies SiteConfig;
