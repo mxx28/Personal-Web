@@ -279,6 +279,16 @@ const home = {
     copyEmailLabel: "复制邮箱",
     emailCopiedLabel: "已复制",
   },
+  gallery: {
+    tocLabel: "相册",
+    title: "Gallery",
+    items: [
+      { src: withBase("/images/gallery/morges.png"), alt: "Morges lake view" },
+      { src: withBase("/images/gallery/luzern.png"), alt: "Luzern lion monument" },
+      { src: withBase("/images/gallery/basel.png"), alt: "Basel cathedral" },
+      { src: withBase("/images/gallery/bern.png"), alt: "Bern old town" },
+    ],
+  },
   funFacts: {
     tocLabel: "趣味事实",
     title: "Fun Facts",

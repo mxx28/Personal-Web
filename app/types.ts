@@ -274,6 +274,15 @@ export type HomeBlogsContent = {
   items: BlogEntry[];
 };
 
+export type HomeGalleryContent = {
+  tocLabel: string;
+  title: string;
+  items: Array<{
+    src: string;
+    alt: string;
+  }>;
+};
+
 export type HomeFunFactsContent = {
   tocLabel: string;
   title: string;
@@ -325,6 +334,7 @@ export type HomeContent = {
   publications: HomePublicationsContent;
   skills: HomeSkillsContent;
   blogs: HomeBlogsContent;
+  gallery: HomeGalleryContent;
   funFacts: HomeFunFactsContent;
   now: HomeNowContent;
   resume: HomeResumeContent;

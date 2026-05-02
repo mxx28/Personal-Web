@@ -104,7 +104,7 @@ export default function Publications() {
                     to={href}
                     viewTransition
                     state={{ cover: pub.cover }}
-                    className="group relative block px-4 py-4 transition-colors hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30"
+                    className="group relative flex flex-col px-4 pt-4 pb-4 transition-colors hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30 sm:block sm:py-4"
                   >
                     <div className="flex w-full items-start justify-between gap-4 pr-2 transition-all duration-300 group-hover:-translate-y-1">
                       <div className="flex min-w-0 flex-col gap-1 text-left">
@@ -141,7 +141,7 @@ export default function Publications() {
                       ) : null}
                     </div>
 
-                    <span className="pointer-events-none absolute bottom-3 left-4 flex items-center gap-1 text-xs font-medium text-muted-foreground transition-colors group-hover:text-foreground">
+                    <span className="pointer-events-none mt-2 flex items-center gap-1 text-xs font-medium text-muted-foreground transition-colors group-hover:text-foreground sm:absolute sm:bottom-3 sm:left-4 sm:mt-0">
                       View details <IconArrowNarrowRight data-icon="inline-end" />
                     </span>
                   </Link>

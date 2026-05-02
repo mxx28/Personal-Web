@@ -11,9 +11,7 @@ export default function UserCard() {
 
   return (
     <div className="flex w-full items-center justify-between p-2 md:px-6 md:py-3">
-      {/* Left */}
-      <div className="flex min-w-0 items-center gap-4 sm:gap-4">
-        {/* Avatar */}
+      <div className="flex min-w-0 flex-1 items-center gap-3 sm:gap-4">
         <div className="size-18 shrink-0 rounded-2xl bg-background p-0.5 ring-1 ring-black/20 sm:size-24 dark:ring-white/25">
           <div className="h-full w-full overflow-hidden rounded-[calc(theme(borderRadius.2xl)-2px)]">
             <img
@@ -24,9 +22,8 @@ export default function UserCard() {
           </div>
         </div>
 
-        {/* Info */}
-        <div className="flex min-w-0 flex-col justify-center gap-2 h-full">
-          <h1 className="truncate text-lg font-semibold leading-tight sm:text-2xl">
+        <div className="flex min-w-0 flex-1 flex-col justify-center gap-2">
+          <h1 className="break-words text-lg font-semibold leading-tight sm:text-2xl">
             {profile.name}
           </h1>
 
@@ -36,8 +33,7 @@ export default function UserCard() {
         </div>
       </div>
 
-      {/* Right */}
-      <div className="flex flex-col shrink-0 items-end justify-between gap-3 sm:gap-4">
+      <div className="flex shrink-0 flex-col items-end justify-between gap-3 sm:gap-4">
         <ModeToggle />
         <VisitorCount />
       </div>

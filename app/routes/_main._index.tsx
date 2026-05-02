@@ -14,6 +14,7 @@ import SectionFrame from "@/components/Center/SectionFrame";
 import { ScrollAnchorToc } from "@/components/ScrollAnchorToc";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import FunFacts from "@/components/Center/Main/FunFacts";
+import Gallery from "@/components/Center/Main/Gallery";
 
 export default function Home() {
   const { home } = useSiteContent();
@@ -80,6 +81,10 @@ export default function Home() {
 
       <SectionFrame id="resume" tocLabel={home.resume.tocLabel} tocDepth={2}>
         <Resume />
+      </SectionFrame>
+
+      <SectionFrame id="gallery" tocLabel={home.gallery.tocLabel} tocDepth={2}>
+        <Gallery />
       </SectionFrame>
 
       <SectionFrame
