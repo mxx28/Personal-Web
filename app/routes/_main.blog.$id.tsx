@@ -67,6 +67,16 @@ const markdownComponents: Components = {
   hr: ({ node: _node, ...props }) => (
     <hr className="my-8 border-0 border-t border-border/55 sm:my-10" {...props} />
   ),
+  img: ({ node: _node, src, alt, className, ...props }) => (
+    <img
+      alt={alt ?? ""}
+      className={cn("my-4 w-full max-w-2xl rounded-lg border border-border/60 bg-muted/20", className)}
+      loading="lazy"
+      decoding="async"
+      {...props}
+      src={src ? withBase(src) : undefined}
+    />
+  ),
 };
 
 type Frontmatter = {

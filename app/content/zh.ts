@@ -212,6 +212,14 @@ const home = {
     viewDetailsLabel: "View details",
     items: [
       {
+        id: "slurm-pytorch-ddp-pretraining",
+        title: "从 Slurm 到 PyTorch DDP：分布式预训练流程笔记",
+        summary:
+          "多机多卡 DDP 主线：Slurm 启进程、NCCL 组网、按 rank 分片数据、DDP 梯度同步、累积与 no_sync、rank 0 与 all_reduce 聚合指标。",
+        cover: withBase("/images/blog-covers/slurm-pytorch-ddp-pretraining.png"),
+        badge: "Technical",
+      },
+      {
         id: "learning-mcmc-ising",
         title: "通过 Ising 模型学习 MCMC",
         summary:
@@ -225,13 +233,6 @@ const home = {
         summary: "以前我一直觉得，写博客这件事离我挺远的。",
         cover: withBase("/images/blog-covers/why-write-a-blog.png"),
         badge: "Personal",
-      },
-      {
-        id: "blog-from-prototype-to-paper",
-        title: "从实验到论文的叙事",
-        summary: "把实验整理成清晰的故事：假设、消融与可复现的结果呈现。",
-        cover: withBase("/images/publications/fed-tsne-umap-cover.png"),
-        badge: "科研",
       },
     ],
   },

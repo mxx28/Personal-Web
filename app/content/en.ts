@@ -225,6 +225,14 @@ const home = {
     viewDetailsLabel: "View details",
     items: [
       {
+        id: "slurm-pytorch-ddp-pretraining",
+        title: "Distributed Pretraining with Slurm and PyTorch DDP",
+        summary:
+          "A pipeline note on multi-node DDP: Slurm launches, NCCL init, per-rank sharding, DDP sync, gradient accumulation with no_sync, and manual metric aggregation.",
+        cover: withBase("/images/blog-covers/slurm-pytorch-ddp-pretraining.png"),
+        badge: "Technical",
+      },
+      {
         id: "learning-mcmc-ising",
         title: "Learning MCMC through the Ising Model",
         summary:
@@ -239,14 +247,6 @@ const home = {
           "Why writing blogs quietly changed the way I learn.",
         cover: withBase("/images/blog-covers/why-write-a-blog.png"),
         badge: "Personal",
-      },
-      {
-        id: "blog-from-prototype-to-paper",
-        title: "From Prototype to Paper",
-        summary:
-          "Turning experiments into a clean narrative: hypotheses, ablations, and reproducible results.",
-        cover: withBase("/images/publications/fed-tsne-umap-cover.png"),
-        badge: "Research",
       },
     ],
   },
