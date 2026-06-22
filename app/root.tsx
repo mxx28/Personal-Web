@@ -12,6 +12,14 @@ import { siteConfig } from "@/site/config";
 import type { Route } from "./+types/root";
 import "./app.css";
 
+export function links() {
+  return [
+    { rel: "icon", href: "/icons/favicon.ico", sizes: "any" },
+    { rel: "icon", type: "image/png", href: "/icons/favicon-32.png", sizes: "32x32" },
+    { rel: "apple-touch-icon", href: "/icons/apple-touch-icon.png", sizes: "180x180" },
+  ];
+}
+
 export function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang={siteConfig.defaultLanguage} className="no-scrollbar">

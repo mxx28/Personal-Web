@@ -5,6 +5,7 @@ import Introduction from "@/components/Center/Main/Introduction";
 import Publications from "@/components/Center/Main/Publications";
 import Newsletter from "@/components/Center/Main/Newsletter";
 import Projects from "@/components/Center/Main/Projects";
+import StudyNotes from "@/components/Center/Main/StudyNotes";
 import Blogs from "@/components/Center/Main/Blogs";
 import Resume from "@/components/Center/Main/Resume";
 import SkillsTechnologies from "@/components/Center/Main/SkillsTechnologies";
@@ -69,6 +70,14 @@ export default function Home() {
         tocDepth={3}
       >
         <SkillsTechnologies />
+      </SectionFrame>
+
+      <SectionFrame
+        id="study-notes"
+        tocLabel={home.studyNotes.tocLabel}
+        tocDepth={2}
+      >
+        <StudyNotes />
       </SectionFrame>
 
       <SectionFrame

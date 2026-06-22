@@ -274,6 +274,20 @@ export type HomeBlogsContent = {
   items: BlogEntry[];
 };
 
+export type StudyNoteHomeItem = {
+  id: string;
+  title: string;
+  summary: string;
+  badge?: string;
+};
+
+export type HomeStudyNotesContent = {
+  tocLabel: string;
+  title: string;
+  viewDetailsLabel: string;
+  items: StudyNoteHomeItem[];
+};
+
 export type HomeGalleryContent = {
   tocLabel: string;
   title: string;
@@ -333,6 +347,7 @@ export type HomeContent = {
   researchExperiences: HomeResearchExperiencesContent;
   publications: HomePublicationsContent;
   skills: HomeSkillsContent;
+  studyNotes: HomeStudyNotesContent;
   blogs: HomeBlogsContent;
   gallery: HomeGalleryContent;
   funFacts: HomeFunFactsContent;

@@ -219,6 +219,27 @@ const home = {
       { name: "JavaScript", icon: "javascript" },
     ],
   },
+  studyNotes: {
+    tocLabel: "Study Note",
+    title: "Study Notes",
+    viewDetailsLabel: "View details",
+    items: [
+      {
+        id: "cs336-spring2025",
+        title: "Stanford CS336 Spring-2025",
+        summary:
+          "Stanford CS336 · Language Modeling from Scratch — personal lecture notes.",
+        badge: "Course",
+      },
+      {
+        id: "self-study-notes",
+        title: "Self Study Notes",
+        summary:
+          "A running notebook for ideas I'm currently teaching myself, from LLM inference tricks to systems details.",
+        badge: "Self Study",
+      },
+    ],
+  },
   blogs: {
     tocLabel: "Blogs",
     title: "Blogs",

@@ -206,6 +206,25 @@ const home = {
       { name: "JavaScript", icon: "javascript" },
     ],
   },
+  studyNotes: {
+    tocLabel: "学习笔记",
+    title: "学习笔记",
+    viewDetailsLabel: "查看详情",
+    items: [
+      {
+        id: "cs336-spring2025",
+        title: "Stanford CS336 Spring-2025",
+        summary: "Stanford CS336《从零实现语言模型》— 个人课程笔记。",
+        badge: "课程",
+      },
+      {
+        id: "self-study-notes",
+        title: "Self Study Notes",
+        summary: "记录我最近自学的新知识点、论文理解与技术备忘，持续更新。",
+        badge: "自学",
+      },
+    ],
+  },
   blogs: {
     tocLabel: "Blogs",
     title: "Blogs",
