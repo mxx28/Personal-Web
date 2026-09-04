@@ -430,40 +430,25 @@ const projects = defineProjects({
       "Prettier",
     ],
     links: {
-      github: "https://github.com/Mike-Ski-615/Next.js-Authentication-Scaffold",
+      github: "https://github.com/com-480-data-visualization/SwissReach",
       readme:
-        "https://github.com/Mike-Ski-615/Next.js-Authentication-Scaffold#readme",
+        "https://github.com/com-480-data-visualization/SwissReach#readme",
       issues:
-        "https://github.com/Mike-Ski-615/Next.js-Authentication-Scaffold/issues",
+        "https://github.com/com-480-data-visualization/SwissReach/issues",
     },
   },
-  "three-d-face-particles": {
-    slug: "three-d-face-particles",
-    cover: withBase("/images/projects/3d-face.webp"),
-    name: "3D Face Particles",
-    summary:
-      "A GPU particle-face experiment driven by depth maps, shader noise fields, and smooth face-to-face morph transitions.",
-    intro:
-      "This project reconstructs portrait depth textures into a dense point cloud and animates them with custom GLSL vertex/fragment shaders. It blends between multiple faces over time and preserves visual continuity during transitions.",
-    detail:
-      "Built with React Three Fiber, Three.js, and GSAP, it renders 78,400 particles (280x280) with DOF shading, curl-noise deformation, vortex controls, and live parameter tuning via Leva for rapid art-direction.",
+  "zip2zip-compression": {
+    slug: "zip2zip-compression",
+    // TODO: placeholder copy carried over from the previous project — replace with real Zip2Zip content.
+    cover: withBase("/images/projects/zip2zip.png"),
+    name: "Zip2Zip Compression",
+    summary: "Compression-aware tokenization for more efficient LLM training and inference.",
+    intro: "Compression-aware tokenization for more efficient LLM training and inference.",
+    detail: "Compression-aware tokenization for more efficient LLM training and inference.",
     status: "online",
-    stack: [
-      "React 19",
-      "TypeScript 5",
-      "Three.js",
-      "@react-three/fiber",
-      "@react-three/drei",
-      "GLSL",
-      "GSAP",
-      "maath",
-      "Leva",
-      "Vite 8",
-    ],
+    stack: [],
     links: {
-      github: "https://github.com/Mike-Ski-615/3D-Face",
-      readme: "https://github.com/Mike-Ski-615/3D-Face#readme",
-      issues: "https://github.com/Mike-Ski-615/3D-Face/issues",
+      demo: "https://zip2zip-tokenizer-main-zygo.vercel.app/",
     },
   },
 });

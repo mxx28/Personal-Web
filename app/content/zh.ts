@@ -392,40 +392,25 @@ const projects: ProjectMap<ProjectSlug> = {
       "Prettier",
     ],
     links: {
-      github: "https://github.com/Mike-Ski-615/Next.js-Authentication-Scaffold",
+      github: "https://github.com/com-480-data-visualization/SwissReach",
       readme:
-        "https://github.com/Mike-Ski-615/Next.js-Authentication-Scaffold#readme",
+        "https://github.com/com-480-data-visualization/SwissReach#readme",
       issues:
-        "https://github.com/Mike-Ski-615/Next.js-Authentication-Scaffold/issues",
+        "https://github.com/com-480-data-visualization/SwissReach/issues",
     },
   },
-  "three-d-face-particles": {
-    slug: "three-d-face-particles",
-    cover: withBase("/images/projects/3d-face.webp"),
-    name: "3D Face Particles",
-    summary:
-      "基于深度图与 GLSL 的人脸粒子重建实验，支持多人脸插值切换与噪声驱动形变。",
-    intro:
-      "项目将人像的颜色图与深度图重建为高密度粒子点云，并通过自定义顶点/片元着色器实现动态过渡。在多张人脸之间切换时，粒子分布和明暗保持连续，减少突兀跳变。",
-    detail:
-      "核心由 React Three Fiber、Three.js 与 GSAP 驱动，使用 280x280（78,400）粒子进行渲染，包含景深衰减、curl noise 流场、vortex 旋涡参数以及 Leva 实时调参，便于快速进行视觉迭代。",
+  "zip2zip-compression": {
+    slug: "zip2zip-compression",
+    // TODO: 占位文案，需要替换成 Zip2Zip 的真实介绍。
+    cover: withBase("/images/projects/zip2zip.png"),
+    name: "Zip2Zip Compression",
+    summary: "面向大语言模型训练与推理的压缩感知分词方法。",
+    intro: "面向大语言模型训练与推理的压缩感知分词方法。",
+    detail: "面向大语言模型训练与推理的压缩感知分词方法。",
     status: "online",
-    stack: [
-      "React 19",
-      "TypeScript 5",
-      "Three.js",
-      "@react-three/fiber",
-      "@react-three/drei",
-      "GLSL",
-      "GSAP",
-      "maath",
-      "Leva",
-      "Vite 8",
-    ],
+    stack: [],
     links: {
-      github: "https://github.com/Mike-Ski-615/3D-Face",
-      readme: "https://github.com/Mike-Ski-615/3D-Face#readme",
-      issues: "https://github.com/Mike-Ski-615/3D-Face/issues",
+      demo: "https://zip2zip-tokenizer-main-zygo.vercel.app/",
     },
   },
 };

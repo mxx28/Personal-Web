@@ -1,6 +1,6 @@
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 import { useLayoutEffect } from "react";
-import { Link, useLocation, useViewTransitionState } from "react-router";
+import { useLocation } from "react-router";
 import SectionHeader from "@/components/Center/SectionHeader";
 import { projectSlugs } from "@/content";
 import { useSiteContent } from "@/hooks/useSiteContent";
@@ -15,7 +15,7 @@ type ProjectReturnState = {
 
 type ProjectCardData = Pick<
   Project,
-  "slug" | "cover" | "name" | "status" | "summary"
+  "slug" | "cover" | "name" | "status" | "summary" | "links"
 >;
 
 function ProjectCard({
@@ -27,22 +27,20 @@ function ProjectCard({
   statusLabel: string;
   viewDetailsLabel: string;
 }) {
-  const projectHref = `/${project.slug}`;
-  const isProjectTransitioning = useViewTransitionState(projectHref);
-  const transitionName = isProjectTransitioning
-    ? `project-cover-${project.slug}`
-    : "none";
+  const externalHref =
+    project.links?.github ?? project.links?.demo ?? project.links?.website;
 
   return (
-    <Link
-      to={projectHref}
-      viewTransition
+    <a
+      href={externalHref}
+      target="_blank"
+      rel="noreferrer"
       data-project-slug={project.slug}
       className="group flex w-full flex-col p-4 text-left transition-colors hover:bg-muted/30 sm:p-6"
     >
       <div className="flex flex-col gap-4 transition-all duration-300 group-hover:-translate-y-1">
         <TransitionImage
-          transitionName={transitionName}
+          transitionName="none"
           src={project.cover}
           alt={project.name}
         />
@@ -71,7 +69,7 @@ function ProjectCard({
           </span>
         </div>
       </div>
-    </Link>
+    </a>
   );
 }
 
@@ -103,6 +101,7 @@ export default function Projects() {
       name: project.name,
       status: project.status,
       summary: project.summary,
+      links: project.links,
     };
   });
 
