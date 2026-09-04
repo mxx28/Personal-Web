@@ -348,12 +348,8 @@ const home = {
       available: "Open to internships",
       updated: "Spring 2026 update",
     },
-    heading: "A one-page snapshot for quick context",
-    description:
-      "This downloadable draft gives a quick look at my direction, stack, and contact path before a deeper conversation.",
-    downloadLabel: "Download resume",
-    copyEmailLabel: "Copy email",
-    emailCopiedLabel: "Copied",
+    description: "Take a look at my CV for a quick view of my experience.",
+    viewLabel: "View CV",
   },
   gallery: {
     tocLabel: "Gallery",

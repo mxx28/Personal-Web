@@ -5,8 +5,7 @@ export const siteConfig: SiteConfig = {
   defaultLanguage: "en-US",
   avatarSrc: withBase("/images/avatar/xinxian-3.png"),
   resume: {
-    href: withBase("/documents/resume.md"),
-    downloadName: "resume.md",
+    href: withBase("/documents/CV_xinxianma.pdf"),
     email: "xinxian.ma@epfl.ch",
   },
   contact: {

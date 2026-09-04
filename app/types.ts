@@ -33,7 +33,6 @@ export type SiteConfig = {
   avatarSrc: string;
   resume: {
     href: string;
-    downloadName: string;
     email: string;
   };
   contact: {
@@ -319,31 +318,8 @@ export type HomeResumeContent = {
     available: string;
     updated: string;
   };
-  heading: string;
   description: string;
-  downloadLabel: string;
-  copyEmailLabel: string;
-  emailCopiedLabel: string;
-};
-
-export type HomeNewsletterContent = {
-  tocLabel: string;
-  title: string;
-  formLabel: string;
-  emailLabel: string;
-  placeholder: string;
-  submitLabel: string;
-  successMessage: string;
-  errors: {
-    required: string;
-    invalid: string;
-  };
-};
-
-export type HomeIntroductionContent = {
-  tocLabel: string;
-  quote: string;
-  author: string;
+  viewLabel: string;
 };
 
 export type HomeContent = {

@@ -310,12 +310,8 @@ const home = {
       available: "实习机会开放",
       updated: "2026 春季更新",
     },
-    heading: "一页简历，方便快速了解我",
-    description:
-      "这里放了一份可下载的简历草稿，适合先快速浏览我的方向、技术栈和联系方式。",
-    downloadLabel: "下载简历",
-    copyEmailLabel: "复制邮箱",
-    emailCopiedLabel: "已复制",
+    description: "点击查看我的简历（CV），快速了解我的经历。",
+    viewLabel: "查看简历",
   },
   gallery: {
     tocLabel: "相册",
