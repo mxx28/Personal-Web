@@ -131,16 +131,16 @@
   html {
     @apply font-sans;
     /* 16px baseline on phone；桌面视口略放大根字号，让 rem 文字与更宽的主栏更匹配 */
-    font-size: 100%;
+    font-size: 106%;
   }
   @media (min-width: 1024px) {
     html {
-      font-size: 106.25%;
+      font-size: 112.5%;
     }
   }
   @media (min-width: 1280px) {
     html {
-      font-size: 108.75%;
+      font-size: 115%;
     }
   }
   button:not(:disabled),
