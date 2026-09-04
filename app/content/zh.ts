@@ -321,6 +321,8 @@ const home = {
       { src: withBase("/images/gallery/luzern.png"), alt: "Luzern lion monument" },
       { src: withBase("/images/gallery/basel.png"), alt: "Basel cathedral" },
       { src: withBase("/images/gallery/bern.png"), alt: "Bern old town" },
+      { src: withBase("/images/gallery/boston.jpg"), alt: "Boston skyline at sunset" },
+      { src: withBase("/images/gallery/new-york.jpg"), alt: "Statue of Liberty" },
     ],
   },
   funFacts: {
