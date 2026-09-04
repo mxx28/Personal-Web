@@ -42,6 +42,10 @@ export type SiteConfig = {
   };
   /** Shown in profile header (e.g. countries / bases). */
   profileLocations?: string;
+  github: {
+    /** GitHub username whose public contribution calendar is shown. */
+    username: string;
+  };
 };
 
 export type HomeSectionId = string;
@@ -206,6 +210,7 @@ export type HomeGithubContent = {
   title: string;
   totalTemplate: string;
   activityTemplate: string;
+  errorMessage: string;
   legend: {
     less: string;
     more: string;

@@ -3,6 +3,7 @@ import {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactElement,
   type SVGProps,
@@ -12,55 +13,70 @@ import { formatContentTemplate } from "@/content";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { useLanguage } from "@/provider/language-provider";
 import { useTheme } from "@/provider/theme-provider";
+import { siteConfig } from "@/site/config";
 
-const getDateSeed = (date: string) =>
-  date.split("").reduce((seed, char) => seed + char.charCodeAt(0), 0);
+type CalendarEntry = { date: string; count: number; level: number };
 
-const getContributionCount = (date: string) => {
-  const seed = getDateSeed(date);
-  return (seed * 17 + seed ** 2) % 10;
+type ContributionsResponse = {
+  contributions: CalendarEntry[];
 };
 
-type CalendarData = {
-  data: Array<{
-    date: string;
-    count: number;
-    level: number;
-  }>;
-  tooltipByDate: Map<string, string>;
-};
-
-function generateData(
-  year: number,
+function buildTooltips(
+  entries: CalendarEntry[],
   locale: string,
   formatTooltip: (date: string, count: number) => string,
-): CalendarData {
-  const data = [];
+): Map<string, string> {
+  const dateFormatter = new Intl.DateTimeFormat(locale, { timeZone: "UTC" });
   const tooltipByDate = new Map<string, string>();
-  const dateFormatter = new Intl.DateTimeFormat(locale, {
-    timeZone: "UTC",
-  });
-  const start = new Date(Date.UTC(year, 0, 1));
-  const end = new Date(Date.UTC(year, 11, 31));
 
-  for (
-    let date = new Date(start);
-    date <= end;
-    date.setUTCDate(date.getUTCDate() + 1)
-  ) {
-    const currentDate = date.toISOString().slice(0, 10);
-    const count = getContributionCount(currentDate);
-    const formattedDate = dateFormatter.format(date);
-
-    data.push({
-      date: currentDate,
-      count,
-      level: Math.min(4, Math.floor(count / 2)),
-    });
-    tooltipByDate.set(currentDate, formatTooltip(formattedDate, count));
+  for (const entry of entries) {
+    const formattedDate = dateFormatter.format(new Date(`${entry.date}T00:00:00Z`));
+    tooltipByDate.set(entry.date, formatTooltip(formattedDate, entry.count));
   }
 
-  return { data, tooltipByDate };
+  return tooltipByDate;
+}
+
+async function fetchContributions(
+  username: string,
+  signal: AbortSignal,
+): Promise<CalendarEntry[]> {
+  const res = await fetch(
+    `https://github-contributions-api.jogruber.de/v4/${username}?y=last`,
+    { signal },
+  );
+
+  if (!res.ok) {
+    throw new Error(`GitHub contributions request failed (${res.status})`);
+  }
+
+  const json: ContributionsResponse = await res.json();
+  return json.contributions;
+}
+
+// Blocks scale to fill the available width so the calendar never leaves
+// empty margins on wide screens, keeping this ratio between block size and
+// the gap between blocks.
+const blockMarginRatio = 0.18;
+const minBlockSize = 8;
+const maxBlockSize = 20;
+
+function useContainerWidth<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    const observer = new ResizeObserver(([entry]) => {
+      setWidth(entry.contentRect.width);
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return [ref, width] as const;
 }
 
 function useMinWidthMedia(px: number) {
@@ -90,15 +106,33 @@ export default function Calendar() {
   const calendarLocale = locale;
   const wideLayout = useMinWidthMedia(1024);
 
-  const { data, tooltipByDate } = useMemo(
+  const [entries, setEntries] = useState<CalendarEntry[] | null>(null);
+  const [error, setError] = useState(false);
+  const [containerRef, containerWidth] = useContainerWidth<HTMLDivElement>();
+
+  useEffect(() => {
+    const controller = new AbortController();
+    setEntries(null);
+    setError(false);
+
+    fetchContributions(siteConfig.github.username, controller.signal)
+      .then(setEntries)
+      .catch((err) => {
+        if (err instanceof DOMException && err.name === "AbortError") return;
+        setError(true);
+      });
+
+    return () => controller.abort();
+  }, []);
+
+  const tooltipByDate = useMemo(
     () =>
-      generateData(currentYear, calendarLocale, (date, count) =>
-        formatContentTemplate(github.activityTemplate, {
-          date,
-          count,
-        }),
-      ),
-    [calendarLocale, currentYear, github.activityTemplate],
+      entries
+        ? buildTooltips(entries, calendarLocale, (date, count) =>
+            formatContentTemplate(github.activityTemplate, { date, count }),
+          )
+        : new Map<string, string>(),
+    [entries, calendarLocale, github.activityTemplate],
   );
   const monthLabels = useMemo(
     () =>
@@ -128,6 +162,21 @@ export default function Calendar() {
     }),
     [github, monthLabels],
   );
+  const weekCount = Math.ceil((entries?.length ?? 371) / 7);
+  const blockSize =
+    containerWidth > 0
+      ? Math.min(
+          maxBlockSize,
+          Math.max(
+            minBlockSize,
+            containerWidth / (weekCount * (1 + blockMarginRatio) - blockMarginRatio),
+          ),
+        )
+      : wideLayout
+        ? 14
+        : 12;
+  const blockMargin = blockSize * blockMarginRatio;
+
   const renderBlock = useCallback(
     (
       block: ReactElement<SVGProps<SVGRectElement>>,
@@ -149,19 +198,26 @@ export default function Calendar() {
     <>
       <SectionHeader>{github.title}</SectionHeader>
       <div className="px-2 py-2 sm:px-4">
-        <div className="-mx-2 overflow-x-auto px-2">
-          <div className="flex justify-center">
-            <ActivityCalendar
-              data={data}
-              blockMargin={wideLayout ? 2.5 : 2}
-              blockSize={wideLayout ? 14 : 12}
-              fontSize={wideLayout ? 13 : 12}
-              renderBlock={renderBlock}
-              labels={labels}
-              colorScheme={theme}
-            />
+        {error ? (
+          <p className="px-2 py-4 text-sm text-muted-foreground">
+            {github.errorMessage}
+          </p>
+        ) : (
+          <div ref={containerRef} className="-mx-2 overflow-x-auto px-2">
+            <div className="flex justify-center">
+              <ActivityCalendar
+                data={entries ?? []}
+                loading={entries === null}
+                blockMargin={blockMargin}
+                blockSize={blockSize}
+                fontSize={wideLayout ? 13 : 12}
+                renderBlock={renderBlock}
+                labels={labels}
+                colorScheme={theme}
+              />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

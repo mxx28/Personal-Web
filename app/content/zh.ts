@@ -52,8 +52,9 @@ const home = {
   github: {
     tocLabel: "GitHub",
     title: "GitHub 活跃度",
-    totalTemplate: "{year} 年共 {count} 次贡献",
+    totalTemplate: "过去一年共 {count} 次贡献",
     activityTemplate: "{date} 共 {count} 次贡献",
+    errorMessage: "暂时无法加载 GitHub 活跃度数据。",
     legend: {
       less: "少",
       more: "多",

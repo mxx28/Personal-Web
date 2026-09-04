@@ -37,4 +37,7 @@ export const siteConfig: SiteConfig = {
     ],
   },
   profileLocations: "China / Switzerland / USA",
+  github: {
+    username: "mxx28",
+  },
 } satisfies SiteConfig;

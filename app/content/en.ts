@@ -65,8 +65,9 @@ const home = {
   github: {
     tocLabel: "GitHub",
     title: "GitHub Activity",
-    totalTemplate: "{count} contributions in {year}",
+    totalTemplate: "{count} contributions in the past year",
     activityTemplate: "{count} contributions on {date}",
+    errorMessage: "Couldn't load GitHub activity right now.",
     legend: {
       less: "Less",
       more: "More",
