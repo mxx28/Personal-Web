@@ -12,14 +12,19 @@ const home = {
     tocLabel: "About",
     greeting: [
       [
-        { text: "Hi, I'm Xinxian, a M.Sc. Data Science student at " },
+        { text: "Hi, I'm Xinxian, an M.Sc. student in Data Science at " },
         { text: "EPFL", href: "https://www.epfl.ch/" },
-        { text: "." },
+        { text: " in Lausanne." },
       ],
       [
         {
-          text: "I'm from China and I'm very interested in Machine Learning and Large Language Models.",
+          text: "My research interests lie in Machine Learning and Large Language Models, particularly ",
         },
+        {
+          text: "efficient LLM inference and data-centric training",
+          bold: true,
+        },
+        { text: "." },
       ],
     ],
     school: {
@@ -30,20 +35,37 @@ const home = {
     },
     status: [
       [
-        { text: "Currently, I’m doing research on LLM decoding at " },
+        { text: "Currently, I am a research intern at " },
         { text: "DLAB", href: "https://dlab.epfl.ch/" },
-        { text: ", and I’m fortunate to be advised by " },
-        { text: "Prof. " },
+        {
+          text: ", working on compression-aware LLMs, where I am fortunate to be supervised by Prof. ",
+        },
         { text: "Robert West", href: "https://dlab.epfl.ch/people/west/" },
         { text: " and PhD student " },
         { text: "Saibo Geng", href: "https://saibo-creator.github.io/" },
-        { text: ". Previously, I completed my B.Sc. in Data Science at " },
-        { text: "CUHK(SZ)", href: "https://www.cuhk.edu.cn/en" },
-        { text: ", supervised by Prof. " },
-        { text: "Jicong Fan", href: "https://jicongfan.github.io/" },
-        { text: ", with a focus on ML." },
+        { text: ". I am also conducting research at " },
+        { text: "CVLab", href: "https://www.epfl.ch/labs/cvlab/" },
+        {
+          text: ", working on data-aware methods for LLM training, where I am fortunate to be supervised by Prof. ",
+        },
+        {
+          text: "Mathieu Salzmann",
+          href: "https://people.epfl.ch/mathieu.salzmann?lang=en",
+        },
+        { text: " and PhD student " },
+        { text: "Shuangqi Li", href: "https://lishuangqi.com/" },
+        { text: "." },
       ],
-      [{ text: "Currently seeking LLM/ML/DS internship opportunities." }],
+      [
+        { text: "Previously, I received my B.Sc. in Data Science from " },
+        { text: "CUHK-Shenzhen", href: "https://www.cuhk.edu.cn/en" },
+        {
+          text: ", with a GPA of 3.9/4.0 (top 2%). I was advised by Prof. ",
+        },
+        { text: "Jicong Fan", href: "https://jicongfan.github.io/" },
+        { text: ", with a research focus on machine learning." },
+      ],
+      [{ text: "I am currently seeking LLM/ML/DS internship opportunities." }],
     ],
     badges: [
       { id: "open-to-work", label: "Open to Work", icon: "briefcase" },

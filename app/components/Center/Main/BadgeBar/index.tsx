@@ -39,7 +39,7 @@ export default function BadgeBar() {
           <Badge
             key={badge.id}
             variant="secondary"
-            className="h-4 gap-1 px-1.5 py-0 text-[0.625rem] border-border/60 bg-secondary/80 [&>svg]:size-2.5"
+            className="h-5 gap-1 px-2 py-0 text-xs border-border/60 bg-secondary/80 [&>svg]:size-3"
           >
             <Icon aria-hidden="true" />
             {badge.label}

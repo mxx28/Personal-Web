@@ -4,7 +4,7 @@ import { useSiteContent } from "@/hooks/useSiteContent";
 import { siteConfig } from "@/site/config";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 
-type TextPart = { text: string; href?: string };
+type TextPart = { text: string; href?: string; bold?: boolean };
 
 function normalizeIntroParagraphs(
   greetingParagraphs: TextPart[][] | null,
@@ -50,6 +50,7 @@ function renderPart(
   key: string,
 ): ReactNode {
   const slice = part.text.slice(0, sliceLen);
+  const boldClassName = part.bold ? "font-semibold text-foreground" : "";
   if (part.href) {
     return (
       <a
@@ -57,13 +58,17 @@ function renderPart(
         href={part.href}
         target="_blank"
         rel="noreferrer"
-        className="underline underline-offset-4 hover:text-foreground"
+        className={`underline underline-offset-4 hover:text-foreground ${boldClassName}`}
       >
         {slice}
       </a>
     );
   }
-  return <span key={key}>{slice}</span>;
+  return (
+    <span key={key} className={boldClassName}>
+      {slice}
+    </span>
+  );
 }
 
 function Cursor() {
@@ -181,7 +186,7 @@ function TypingIntroContent({ paragraphs }: { paragraphs: TextPart[][] }) {
     return out;
   }, [flatParts, typed, done]);
 
-  return <div className="flex flex-col gap-1.5">{rendered}</div>;
+  return <div className="flex flex-col gap-3">{rendered}</div>;
 }
 
 export default function Introduce() {
@@ -193,19 +198,19 @@ export default function Introduce() {
   const greetingParts = Array.isArray(about.greeting) ? about.greeting : null;
   const greetingText = typeof about.greeting === "string" ? about.greeting : null;
   const greetingParagraphs = Array.isArray(greetingParts?.[0])
-    ? (about.greeting as Array<Array<{ text: string; href?: string }>>)
+    ? (about.greeting as TextPart[][])
     : null;
   const greetingInlineParts = greetingParagraphs
     ? null
-    : (greetingParts as Array<{ text: string; href?: string }> | null);
+    : (greetingParts as TextPart[] | null);
   const statusText = typeof about.status === "string" ? about.status : null;
   const statusArray = Array.isArray(about.status) ? about.status : null;
   const statusParagraphs = Array.isArray(statusArray?.[0])
-    ? (about.status as Array<Array<{ text: string; href?: string }>>)
+    ? (about.status as TextPart[][])
     : null;
   const statusParts = statusParagraphs
     ? null
-    : (statusArray as Array<{ text: string; href?: string }> | null);
+    : (statusArray as TextPart[] | null);
 
   const paragraphs = useMemo(
     () =>

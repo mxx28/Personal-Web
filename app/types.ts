@@ -166,11 +166,13 @@ export type HomeAboutContent = {
     | Array<{
         text: string;
         href?: string;
+        bold?: boolean;
       }>
     | Array<
         Array<{
           text: string;
           href?: string;
+          bold?: boolean;
         }>
       >;
   status:
@@ -178,11 +180,13 @@ export type HomeAboutContent = {
     | Array<{
         text: string;
         href?: string;
+        bold?: boolean;
       }>
     | Array<
         Array<{
           text: string;
           href?: string;
+          bold?: boolean;
         }>
       >;
   school: {

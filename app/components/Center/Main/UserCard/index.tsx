@@ -12,7 +12,7 @@ export default function UserCard() {
   return (
     <div className="flex w-full items-center justify-between p-2 md:px-6 md:py-3">
       <div className="flex min-w-0 flex-1 items-center gap-3 sm:gap-4">
-        <div className="size-18 shrink-0 rounded-2xl bg-background p-0.5 ring-1 ring-black/20 sm:size-24 dark:ring-white/25">
+        <div className="size-20 shrink-0 rounded-2xl bg-background p-0.5 ring-1 ring-black/20 sm:size-28 dark:ring-white/25">
           <div className="h-full w-full overflow-hidden rounded-[calc(theme(borderRadius.2xl)-2px)]">
             <img
               src={siteConfig.avatarSrc}
