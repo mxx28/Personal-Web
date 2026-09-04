@@ -106,7 +106,17 @@ export default function Publications() {
                     state={{ cover: pub.cover }}
                     className="group relative flex flex-col px-4 pt-4 pb-4 transition-colors hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30 sm:block sm:py-4"
                   >
-                    <div className="flex w-full items-start justify-between gap-4 pr-2 transition-all duration-300 group-hover:-translate-y-1">
+                    <div className="flex w-full items-start gap-4 pr-2 transition-all duration-300 group-hover:-translate-y-1">
+                      {pub.cover ? (
+                        <div className="hidden shrink-0 sm:block">
+                          <PublicationCover
+                            pubId={pub.id}
+                            cover={pub.cover}
+                            title={pub.title}
+                          />
+                        </div>
+                      ) : null}
+
                       <div className="flex min-w-0 flex-col gap-1 text-left">
                         <div className="text-sm font-semibold leading-snug text-title underline-offset-4 group-hover:underline">
                           {pub.title}
@@ -128,22 +138,12 @@ export default function Publications() {
                           </div>
                         ) : null}
                         <PublicationLinks links={pub.links} />
+
+                        <span className="pointer-events-none mt-2 flex items-center gap-1 text-xs font-medium text-muted-foreground transition-colors group-hover:text-foreground">
+                          View details <IconArrowNarrowRight data-icon="inline-end" />
+                        </span>
                       </div>
-
-                      {pub.cover ? (
-                        <div className="hidden shrink-0 sm:block">
-                          <PublicationCover
-                            pubId={pub.id}
-                            cover={pub.cover}
-                            title={pub.title}
-                          />
-                        </div>
-                      ) : null}
                     </div>
-
-                    <span className="pointer-events-none mt-2 flex items-center gap-1 text-xs font-medium text-muted-foreground transition-colors group-hover:text-foreground sm:absolute sm:bottom-3 sm:left-4 sm:mt-0">
-                      View details <IconArrowNarrowRight data-icon="inline-end" />
-                    </span>
                   </Link>
 
                   {index < publications.items.length - 1 && (
