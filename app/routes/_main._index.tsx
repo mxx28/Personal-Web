@@ -1,12 +1,9 @@
 import Experiences from "@/components/Center/Main/Experiences";
 import GithubHeatmap from "@/components/Center/Main/GithubHeatmap";
 import Introduce from "@/components/Center/Main/Introduce";
-import Introduction from "@/components/Center/Main/Introduction";
 import Publications from "@/components/Center/Main/Publications";
-import Newsletter from "@/components/Center/Main/Newsletter";
 import Projects from "@/components/Center/Main/Projects";
 import StudyNotes from "@/components/Center/Main/StudyNotes";
-import Blogs from "@/components/Center/Main/Blogs";
 import Resume from "@/components/Center/Main/Resume";
 import SkillsTechnologies from "@/components/Center/Main/SkillsTechnologies";
 import Socials from "@/components/Center/Main/Socials";
@@ -16,6 +13,9 @@ import { ScrollAnchorToc } from "@/components/ScrollAnchorToc";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import FunFacts from "@/components/Center/Main/FunFacts";
 import Gallery from "@/components/Center/Main/Gallery";
+
+// Study Notes is kept in the codebase but temporarily hidden from the site.
+const showStudyNotes = false;
 
 export default function Home() {
   const { home } = useSiteContent();
@@ -72,21 +72,15 @@ export default function Home() {
         <SkillsTechnologies />
       </SectionFrame>
 
-      <SectionFrame
-        id="study-notes"
-        tocLabel={home.studyNotes.tocLabel}
-        tocDepth={2}
-      >
-        <StudyNotes />
-      </SectionFrame>
-
-      <SectionFrame
-        id="blogs"
-        tocLabel={home.blogs.tocLabel}
-        tocDepth={2}
-      >
-        <Blogs />
-      </SectionFrame>
+      {showStudyNotes ? (
+        <SectionFrame
+          id="study-notes"
+          tocLabel={home.studyNotes.tocLabel}
+          tocDepth={2}
+        >
+          <StudyNotes />
+        </SectionFrame>
+      ) : null}
 
       <SectionFrame id="resume" tocLabel={home.resume.tocLabel} tocDepth={2}>
         <Resume />
@@ -104,21 +98,6 @@ export default function Home() {
         <FunFacts />
       </SectionFrame>
 
-      <SectionFrame
-        id="newsletter"
-        tocLabel={home.newsletter.tocLabel}
-        tocDepth={3}
-      >
-        <Newsletter />
-      </SectionFrame>
-
-      <SectionFrame
-        id="introduction"
-        tocLabel={home.introduction.tocLabel}
-        tocDepth={2}
-      >
-        <Introduction />
-      </SectionFrame>
     </>
   );
 }

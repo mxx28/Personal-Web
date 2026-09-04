@@ -280,37 +280,6 @@ const home = {
       },
     ],
   },
-  blogs: {
-    tocLabel: "Blogs",
-    title: "Blogs",
-    viewDetailsLabel: "View details",
-    items: [
-      {
-        id: "slurm-pytorch-ddp-pretraining",
-        title: "Distributed Pretraining with Slurm and PyTorch DDP",
-        summary:
-          "A pipeline note on multi-node DDP: Slurm launches, NCCL init, per-rank sharding, DDP sync, gradient accumulation with no_sync, and manual metric aggregation.",
-        cover: withBase("/images/blog-covers/slurm-pytorch-ddp-pretraining.png"),
-        badge: "Technical",
-      },
-      {
-        id: "learning-mcmc-ising",
-        title: "Learning MCMC through the Ising Model",
-        summary:
-          "A practical, visual introduction to Metropolis, Gibbs sampling, and exact sampling (CFTP) using the Ising model.",
-        cover: withBase("/images/blog-covers/learning-mcmc-ising.png"),
-        badge: "Technical",
-      },
-      {
-        id: "why-write-a-blog",
-        title: "Why Write a Blog",
-        summary:
-          "Why writing blogs quietly changed the way I learn.",
-        cover: withBase("/images/blog-covers/why-write-a-blog.png"),
-        badge: "Personal",
-      },
-    ],
-  },
   now: {
     tocLabel: "Now",
     title: "Now",
@@ -373,25 +342,6 @@ const home = {
       "I’m a loyal NBA Golden State Warriors fan.",
       "I’m also a Chelsea FC supporter in the Premier League.",
     ],
-  },
-  newsletter: {
-    tocLabel: "Newsletter",
-    title: "Newsletter",
-    formLabel: "Newsletter signup form",
-    emailLabel: "Email address",
-    placeholder: "Enter your email",
-    submitLabel: "Subscribe",
-    successMessage: "You're on the list. Thanks for subscribing.",
-    errors: {
-      required: "Please enter your email address.",
-      invalid: "Please enter a valid email address.",
-    },
-  },
-  introduction: {
-    tocLabel: "Introduction",
-    quote:
-      "Learning deeply and staying genuinely curious about the world.\nBecoming better at turning data into understanding and insight.\nBuilding things — models, systems, or ideas — that are both useful and meaningful.",
-    author: "Xinxian Ma",
   },
 } satisfies SiteContent["home"];
 

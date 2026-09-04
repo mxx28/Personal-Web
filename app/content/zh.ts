@@ -243,36 +243,6 @@ const home = {
       },
     ],
   },
-  blogs: {
-    tocLabel: "Blogs",
-    title: "Blogs",
-    viewDetailsLabel: "View details",
-    items: [
-      {
-        id: "slurm-pytorch-ddp-pretraining",
-        title: "从 Slurm 到 PyTorch DDP：分布式预训练流程笔记",
-        summary:
-          "多机多卡 DDP 主线：Slurm 启进程、NCCL 组网、按 rank 分片数据、DDP 梯度同步、累积与 no_sync、rank 0 与 all_reduce 聚合指标。",
-        cover: withBase("/images/blog-covers/slurm-pytorch-ddp-pretraining.png"),
-        badge: "Technical",
-      },
-      {
-        id: "learning-mcmc-ising",
-        title: "通过 Ising 模型学习 MCMC",
-        summary:
-          "用 Ising 模型直观理解 Metropolis、Gibbs 采样与精确采样（CFTP）的实践型入门。",
-        cover: withBase("/images/blog-covers/learning-mcmc-ising.png"),
-        badge: "Technical",
-      },
-      {
-        id: "why-write-a-blog",
-        title: "为什么写博客",
-        summary: "以前我一直觉得，写博客这件事离我挺远的。",
-        cover: withBase("/images/blog-covers/why-write-a-blog.png"),
-        badge: "Personal",
-      },
-    ],
-  },
   now: {
     tocLabel: "近况",
     title: "近况",
@@ -335,25 +305,6 @@ const home = {
       "I’m a loyal NBA Golden State Warriors fan.",
       "I’m also a Chelsea FC supporter in the Premier League.",
     ],
-  },
-  newsletter: {
-    tocLabel: "订阅",
-    title: "订阅通讯",
-    formLabel: "订阅通讯表单",
-    emailLabel: "邮箱地址",
-    placeholder: "输入你的邮箱",
-    submitLabel: "订阅",
-    successMessage: "已记录，感谢订阅。",
-    errors: {
-      required: "请输入邮箱地址。",
-      invalid: "请输入有效的邮箱地址。",
-    },
-  },
-  introduction: {
-    tocLabel: "引言",
-    quote:
-      "Learning deeply and staying genuinely curious about the world.\nBecoming better at turning data into understanding and insight.\nBuilding things — models, systems, or ideas — that are both useful and meaningful.",
-    author: "Xinxian Ma",
   },
 } satisfies SiteContent["home"];
 

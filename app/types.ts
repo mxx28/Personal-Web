@@ -267,21 +267,6 @@ export type HomeNowContent = {
   items: NowEntry[];
 };
 
-export type BlogEntry = {
-  id: string;
-  title: string;
-  summary: string;
-  cover: string;
-  badge?: string;
-};
-
-export type HomeBlogsContent = {
-  tocLabel: string;
-  title: string;
-  viewDetailsLabel: string;
-  items: BlogEntry[];
-};
-
 export type StudyNoteHomeItem = {
   id: string;
   title: string;
@@ -333,13 +318,10 @@ export type HomeContent = {
   publications: HomePublicationsContent;
   skills: HomeSkillsContent;
   studyNotes: HomeStudyNotesContent;
-  blogs: HomeBlogsContent;
   gallery: HomeGalleryContent;
   funFacts: HomeFunFactsContent;
   now: HomeNowContent;
   resume: HomeResumeContent;
-  newsletter: HomeNewsletterContent;
-  introduction: HomeIntroductionContent;
 };
 
 export type UiCommonContent = {
