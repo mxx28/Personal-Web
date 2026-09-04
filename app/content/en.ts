@@ -79,12 +79,12 @@ const home = {
     title: "Experience",
     items: [
       {
-        id: "dlab-research-assistant",
+        id: "dlab-research-intern",
         organization: "Data Science & AI Lab (DLAB) · EPFL",
-        role: "Research Assistant",
+        role: "Research Intern",
         employmentType: "Research",
         kind: "research",
-        period: "2026 - Present",
+        period: "Feb, 2026 - Present",
         location: "Lausanne, Switzerland",
         logoText: "DL",
         logoSrc: withBase("/images/company-logos/dlab.png"),
@@ -93,6 +93,23 @@ const home = {
         highlights: [
           "Worked on LLM-related research topics, exploring practical decoding and evaluation setups for controlled generation.",
           "Built lightweight experiment pipelines (data prep, prompt templates, metrics) to iterate quickly and report findings.",
+        ],
+      },
+      {
+        id: "cvlab-research-assistant",
+        organization: "Computer Vision Lab (CVLab) · EPFL",
+        role: "Research Assistant",
+        employmentType: "Research",
+        kind: "research",
+        period: "Sep, 2026 - Present",
+        location: "Lausanne, Switzerland",
+        logoText: "CV",
+        logoSrc: withBase("/images/company-logos/cvlab.png"),
+        logoDarkSrc: withBase("/images/company-logos/cvlab-dark.png"),
+        logoAlt: "CVLab logo",
+        tags: ["LLMs", "Data-Centric Training"],
+        highlights: [
+          "Working on data-aware methods for LLM training, exploring how data selection and composition affect training efficiency and downstream performance.",
         ],
       },
       {

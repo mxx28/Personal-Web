@@ -12,13 +12,24 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import { Fragment, useMemo, useState } from "react";
 
+// Expand/collapse is temporarily disabled; the per-item highlights/tags
+// content below is kept in place in case it's turned back on later.
+const experienceExpandEnabled = false;
+
 function ExperienceItem({ experience }: { experience: ExperienceEntry }) {
   return (
     <AccordionItem
       value={experience.id}
+      disabled={!experienceExpandEnabled}
       className="group px-4 transition-colors hover:bg-muted/30 not-last:border-b-0"
     >
-      <AccordionTrigger className="py-4 hover:no-underline">
+      <AccordionTrigger
+        className={
+          experienceExpandEnabled
+            ? "py-4 hover:no-underline"
+            : "py-4 hover:no-underline disabled:opacity-100 [&_[data-slot=accordion-trigger-icon]]:hidden"
+        }
+      >
         <div className="flex w-full items-start justify-between gap-4 pr-2 transition-all duration-300 group-hover:-translate-y-1">
           <div className="flex min-w-0 items-start gap-4">
             <div className="flex size-15 shrink-0 items-center justify-center rounded-2xl border border-border/70 bg-muted/25">

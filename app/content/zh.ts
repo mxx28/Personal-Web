@@ -66,12 +66,12 @@ const home = {
     title: "经历",
     items: [
       {
-        id: "dlab-research-assistant",
+        id: "dlab-research-intern",
         organization: "EPFL 数据科学与人工智能实验室（DLAB）",
-        role: "研究助理",
+        role: "研究实习生",
         employmentType: "科研",
         kind: "research",
-        period: "2026年 - 至今",
+        period: "2026年2月 - 至今",
         location: "洛桑，瑞士",
         logoText: "DL",
         logoSrc: withBase("/images/company-logos/dlab.png"),
@@ -80,6 +80,23 @@ const home = {
         highlights: [
           "围绕大语言模型相关方向开展研究，探索可控生成的解码策略与评测设置。",
           "搭建轻量实验流程（数据准备、prompt 模板、指标计算），支持快速迭代与结论汇报。",
+        ],
+      },
+      {
+        id: "cvlab-research-assistant",
+        organization: "EPFL 计算机视觉实验室（CVLab）",
+        role: "研究助理",
+        employmentType: "科研",
+        kind: "research",
+        period: "2026年9月 - 至今",
+        location: "洛桑，瑞士",
+        logoText: "CV",
+        logoSrc: withBase("/images/company-logos/cvlab.png"),
+        logoDarkSrc: withBase("/images/company-logos/cvlab-dark.png"),
+        logoAlt: "CVLab logo",
+        tags: ["大语言模型（LLM）", "数据驱动训练"],
+        highlights: [
+          "研究面向大语言模型训练的数据感知方法，探索数据选择与配比对训练效率及下游效果的影响。",
         ],
       },
       {
