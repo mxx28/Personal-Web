@@ -7,6 +7,13 @@
 
 @custom-variant dark (&:is(.dark *));
 
+html {
+  /* Scale the whole site down to ~90% regardless of the visitor's own
+     browser zoom, since Tailwind's rem-based sizing follows the root
+     font-size. */
+  font-size: 90%;
+}
+
 :root {
   /* Main column max width (must stay in sync with ScrollAnchorToc positioning) */
   --layout-content-max: 64rem;
