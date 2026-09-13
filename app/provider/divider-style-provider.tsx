@@ -13,7 +13,7 @@ type DividerStyleProviderState = {
 };
 
 const initialState: DividerStyleProviderState = {
-  dividerStyle: "double-solid",
+  dividerStyle: "hairline",
   setDividerStyle: () => null,
 };
 
@@ -58,7 +58,7 @@ const getStoredDividerStyle = (
 
 export function DividerStyleProvider({
   children,
-  defaultStyle = "double-solid",
+  defaultStyle = "hairline",
   storageKey = "site-divider-style",
 }: DividerStyleProviderProps) {
   const [dividerStyle, setDividerStyleState] =

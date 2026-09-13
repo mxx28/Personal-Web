@@ -9,14 +9,15 @@ import {
 import { getSiteContent } from "@/content";
 import { AppProviders } from "@/provider/app-providers";
 import { siteConfig } from "@/site/config";
+import { withBase } from "@/utils/asset";
 import type { Route } from "./+types/root";
 import "./app.css";
 
 export function links() {
   return [
-    { rel: "icon", href: "/icons/favicon.ico", sizes: "any" },
-    { rel: "icon", type: "image/png", href: "/icons/favicon-32.png", sizes: "32x32" },
-    { rel: "apple-touch-icon", href: "/icons/apple-touch-icon.png", sizes: "180x180" },
+    { rel: "icon", href: withBase("/icons/favicon.ico"), sizes: "any" },
+    { rel: "icon", type: "image/png", href: withBase("/icons/favicon-32.png"), sizes: "32x32" },
+    { rel: "apple-touch-icon", href: withBase("/icons/apple-touch-icon.png"), sizes: "180x180" },
   ];
 }
 
