@@ -17,14 +17,15 @@ const home = {
         { text: " in Lausanne." },
       ],
       [
-        {
-          text: "My research interests lie in Machine Learning and Large Language Models, particularly ",
-        },
-        {
-          text: "efficient LLM inference and data-centric training",
-          bold: true,
-        },
+        { text: "My research interests lie in " },
+        { text: "Machine Learning and Large Language Models", bold: true },
         { text: "." },
+        // { text: ", particularly " },
+        // {
+        //   text: "efficient LLM inference and data-centric training",
+        //   bold: true,
+        // },
+        // { text: "." },
       ],
     ],
     school: {
