@@ -8,10 +8,10 @@
 @custom-variant dark (&:is(.dark *));
 
 html {
-  /* Scale the whole site down to ~90% regardless of the visitor's own
+  /* Scale the whole site down to ~95% regardless of the visitor's own
      browser zoom, since Tailwind's rem-based sizing follows the root
      font-size. */
-  font-size: 90%;
+  font-size: 95%;
 }
 
 :root {
